@@ -1,3 +1,3 @@
-# [BIT MONEY Blockchain v1.0](https://getbitmoney.us)
-![bitmoney](bitmoney.gif)
-![bitmoney](bitmoney2.gif)
+# [E-BlockMail Blockchain v1.0](https://e-blockmail.com)
+![e-blockmail](e-blockmail.jpg)
+
