@@ -18,7 +18,7 @@ For example:
   ./github-merge.py 3077
 
 (in any git repository) will help you merge pull request #3077 for the
-Bitmoney-Financials/Bitmoney repository.
+Eblockmail-Financials/Eblockmail repository.
 
 What it does:
 * Fetch master and the pull request.
@@ -36,16 +36,16 @@ couldn't mess with the sources.
 
 Setup
 ---------
-Configuring the github-merge tool for the Bitmoney repository is done in the following way:
+Configuring the github-merge tool for the Eblockmail repository is done in the following way:
 
-    git config githubmerge.repository Bitmoney-Financials/Bitmoney
+    git config githubmerge.repository Eblockmail-Financials/Eblockmail
     git config githubmerge.testcmd "make -j4 check" (adapt to whatever you want to use for testing)
     git config --global user.signingkey mykeyid (if you want to GPG sign)
 
 optimize-pngs.py
 ================
 
-A script to optimize png files in the Bitmoney
+A script to optimize png files in the Eblockmail
 repository (requires pngcrush).
 
 fix-copyright-headers.py
@@ -76,10 +76,10 @@ If only supported symbols are used the return value will be 0 and the output wil
 
 If there are 'unsupported' symbols, the return value will be 1 a list like this will be printed:
 
-    .../64/test_bitmoney: symbol memcpy from unsupported version GLIBC_2.14
-    .../64/test_bitmoney: symbol __fdelt_chk from unsupported version GLIBC_2.15
-    .../64/test_bitmoney: symbol std::out_of_range::~out_of_range() from unsupported version GLIBCXX_3.4.15
-    .../64/test_bitmoney: symbol _ZNSt8__detail15_List_nod from unsupported version GLIBCXX_3.4.15
+    .../64/test_eblockmail: symbol memcpy from unsupported version GLIBC_2.14
+    .../64/test_eblockmail: symbol __fdelt_chk from unsupported version GLIBC_2.15
+    .../64/test_eblockmail: symbol std::out_of_range::~out_of_range() from unsupported version GLIBCXX_3.4.15
+    .../64/test_eblockmail: symbol _ZNSt8__detail15_List_nod from unsupported version GLIBCXX_3.4.15
 
 update-translations.py
 ======================

@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Bitmoney developers
+// Copyright (c) 2017 The Eblockmail developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -106,15 +106,15 @@ public:
         pchMessageStart[3] = 0x25;
         vAlertPubKey = ParseHex("04b6199708a23c5ea4f1e1b27ecf52845ba12bfb709dee3adb08fe7b947613cbc955d79c0173b8ea4a966c283a88389aa925356418a9358cc79e1063eec9c2ee51");
         nDefaultPort = 7070;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; // Bitmoneyy starting difficulty is 1 / 2^12
+        bnProofOfWorkLimit = ~uint256(0) >> 20; // Eblockmaily starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // Bitmoneyy: 1 day
-        nTargetSpacing = 1 * 60;  // Bitmoneyy: 1 minute
+        nTargetTimespan = 1 * 60; // Eblockmaily: 1 day
+        nTargetSpacing = 1 * 60;  // Eblockmaily: 1 minute
         nMaturity = 70;
         nMasternodeCountDrift = 20;
         nMaxMoneyOut = 700000000 * COIN;
@@ -230,8 +230,8 @@ public:
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // Bitmoney: 1 day
-        nTargetSpacing = 1 * 60;  // Bitmoney: 1 minute
+        nTargetTimespan = 1 * 60; // Eblockmail: 1 day
+        nTargetSpacing = 1 * 60;  // Eblockmail: 1 minute
         nLastPOWBlock = 200;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
@@ -255,17 +255,17 @@ public:
         vSeeds.clear();
         vSeeds.push_back(CDNSSeedData("testnet.bit.io", "testnet.bit.io"));         // Single node address
         vSeeds.push_back(CDNSSeedData("testnet1.bit.io", "testnet1.bit.io"));       // Single node address
-        vSeeds.push_back(CDNSSeedData("testnet.bitmoneycoin.org", "testnet.bitmoneycoin.org"));       // Single node address
+        vSeeds.push_back(CDNSSeedData("testnet.eblockmailcoin.org", "testnet.eblockmailcoin.org"));       // Single node address
 
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet bitmoney addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet bitmoney script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet eblockmail addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet eblockmail script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet bitmoney BIP32 pubkeys start with 'DRKV'
+        // Testnet eblockmail BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet bitmoney BIP32 prvkeys start with 'DRKP'
+        // Testnet eblockmail BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet bitmoney BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet eblockmail BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -312,8 +312,8 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // Bitmoney: 1 day
-        nTargetSpacing = 1 * 60;        // Bitmoney: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // Eblockmail: 1 day
+        nTargetSpacing = 1 * 60;        // Eblockmail: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1515524400;
         genesis.nBits = 0x1e0ffff0;

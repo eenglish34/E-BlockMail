@@ -17,7 +17,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/bitmoneyproject/bitmoney
+url=https://github.com/eblockmailproject/eblockmail
 proc=2
 mem=2000
 lxc=true
@@ -31,7 +31,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the bitmoney, gitian-builder, gitian.sigs, and bitmoney-detached-sigs.
+Run this script from the directory containing the eblockmail, gitian-builder, gitian.sigs, and eblockmail-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/bitmoneyproject/bitmoney
+-u|--url	Specify the URL of the repository. Default is https://github.com/eblockmailproject/eblockmail
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -237,8 +237,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/bitmoneyproject/gitian.sigs.git
-    git clone https://github.com/bitmoneyproject/bitmoney-detached-sigs.git
+    git clone https://github.com/eblockmailproject/gitian.sigs.git
+    git clone https://github.com/eblockmailproject/eblockmail-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -252,7 +252,7 @@ then
 fi
 
 # Set up build
-pushd ./bitmoney
+pushd ./eblockmail
 git fetch
 git checkout ${COMMIT}
 popd
@@ -261,7 +261,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./bitmoney-binaries/${VERSION}
+	mkdir -p ./eblockmail-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -271,7 +271,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../bitmoney/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../eblockmail/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -279,9 +279,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit bitmoney=${COMMIT} --url bitmoney=${url} ../bitmoney/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../bitmoney/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/bitmoney-*.tar.gz build/out/src/bitmoney-*.tar.gz ../bitmoney-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit eblockmail=${COMMIT} --url eblockmail=${url} ../eblockmail/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../eblockmail/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/eblockmail-*.tar.gz build/out/src/eblockmail-*.tar.gz ../eblockmail-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -289,10 +289,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit bitmoney=${COMMIT} --url bitmoney=${url} ../bitmoney/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../bitmoney/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/bitmoney-*-win-unsigned.tar.gz inputs/bitmoney-win-unsigned.tar.gz
-	    mv build/out/bitmoney-*.zip build/out/bitmoney-*.exe ../bitmoney-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit eblockmail=${COMMIT} --url eblockmail=${url} ../eblockmail/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../eblockmail/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/eblockmail-*-win-unsigned.tar.gz inputs/eblockmail-win-unsigned.tar.gz
+	    mv build/out/eblockmail-*.zip build/out/eblockmail-*.exe ../eblockmail-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -300,10 +300,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit bitmoney=${COMMIT} --url bitmoney=${url} ../bitmoney/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../bitmoney/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/bitmoney-*-osx-unsigned.tar.gz inputs/bitmoney-osx-unsigned.tar.gz
-	    mv build/out/bitmoney-*.tar.gz build/out/bitmoney-*.dmg ../bitmoney-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit eblockmail=${COMMIT} --url eblockmail=${url} ../eblockmail/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../eblockmail/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/eblockmail-*-osx-unsigned.tar.gz inputs/eblockmail-osx-unsigned.tar.gz
+	    mv build/out/eblockmail-*.tar.gz build/out/eblockmail-*.dmg ../eblockmail-binaries/${VERSION}
 	fi
 	# AArch64
 	if [[ $aarch64 = true ]]
@@ -311,9 +311,9 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} AArch64"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit bitmoney=${COMMIT} --url bitmoney=${url} ../bitmoney/contrib/gitian-descriptors/gitian-aarch64.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-aarch64 --destination ../gitian.sigs/ ../bitmoney/contrib/gitian-descriptors/gitian-aarch64.yml
-	    mv build/out/bitmoney-*.tar.gz build/out/src/bitmoney-*.tar.gz ../bitmoney-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit eblockmail=${COMMIT} --url eblockmail=${url} ../eblockmail/contrib/gitian-descriptors/gitian-aarch64.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-aarch64 --destination ../gitian.sigs/ ../eblockmail/contrib/gitian-descriptors/gitian-aarch64.yml
+	    mv build/out/eblockmail-*.tar.gz build/out/src/eblockmail-*.tar.gz ../eblockmail-binaries/${VERSION}
 	popd
 
         if [[ $commitFiles = true ]]
@@ -340,32 +340,32 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../bitmoney/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../eblockmail/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../bitmoney/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../eblockmail/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../bitmoney/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../eblockmail/contrib/gitian-descriptors/gitian-osx.yml
 	# AArch64
 	echo ""
 	echo "Verifying v${VERSION} AArch64"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-aarch64 ../bitmoney/contrib/gitian-descriptors/gitian-aarch64.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-aarch64 ../eblockmail/contrib/gitian-descriptors/gitian-aarch64.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../bitmoney/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../eblockmail/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../bitmoney/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../eblockmail/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -380,10 +380,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../bitmoney/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../bitmoney/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/bitmoney-*win64-setup.exe ../bitmoney-binaries/${VERSION}
-	    mv build/out/bitmoney-*win32-setup.exe ../bitmoney-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../eblockmail/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../eblockmail/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/eblockmail-*win64-setup.exe ../eblockmail-binaries/${VERSION}
+	    mv build/out/eblockmail-*win32-setup.exe ../eblockmail-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -391,9 +391,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../bitmoney/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../bitmoney/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/bitmoney-osx-signed.dmg ../bitmoney-binaries/${VERSION}/bitmoney-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../eblockmail/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../eblockmail/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/eblockmail-osx-signed.dmg ../eblockmail-binaries/${VERSION}/eblockmail-${VERSION}-osx.dmg
 	fi
 	popd
 

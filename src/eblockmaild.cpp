@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Bitmoney developers
+// Copyright (c) 2017 The Eblockmail developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -25,8 +25,8 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called Bitmoney (http://www.bitmoney.io),
- * which enables instant payments to anyone, anywhere in the world. Bitmoney uses peer-to-peer technology to operate
+ * This is the developer documentation of the reference client for an experimental new digital currency called Eblockmail (http://www.eblockmail.io),
+ * which enables instant payments to anyone, anywhere in the world. Eblockmail uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *
  * The software is a community-driven open source project, released under the MIT license.
@@ -65,18 +65,18 @@ bool AppInit(int argc, char* argv[])
     //
     // Parameters
     //
-    // If Qt is used, parameters/bitmoney.conf are parsed in qt/bitmoney.cpp's main()
+    // If Qt is used, parameters/eblockmail.conf are parsed in qt/eblockmail.cpp's main()
     ParseParameters(argc, argv);
 
     // Process help and version before taking care about datadir
     if (mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("Bitmoney Core Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("Eblockmail Core Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
 
         if (mapArgs.count("-version")) {
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  bitmoneyd [options]                     " + _("Start Bitmoney Core Daemon") + "\n";
+                        "  eblockmaild [options]                     " + _("Start Eblockmail Core Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -112,17 +112,17 @@ bool AppInit(int argc, char* argv[])
         // Command-line RPC
         bool fCommandLine = false;
         for (int i = 1; i < argc; i++)
-            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "bitmoney:"))
+            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "eblockmail:"))
                 fCommandLine = true;
 
         if (fCommandLine) {
-            fprintf(stderr, "Error: There is no RPC client functionality in bitmoneyd anymore. Use the bitmoney-cli utility instead.\n");
+            fprintf(stderr, "Error: There is no RPC client functionality in eblockmaild anymore. Use the eblockmail-cli utility instead.\n");
             exit(1);
         }
 #ifndef WIN32
         fDaemon = GetBoolArg("-daemon", false);
         if (fDaemon) {
-            fprintf(stdout, "Bitmoney server starting\n");
+            fprintf(stdout, "Eblockmail server starting\n");
 
             // Daemonize
             pid_t pid = fork();
@@ -175,7 +175,7 @@ int main(int argc, char* argv[])
 {
     SetupEnvironment();
 
-    // Connect bitmoneyd signal handlers
+    // Connect eblockmaild signal handlers
     noui_connect();
 
     return (AppInit(argc, argv) ? 0 : 1);

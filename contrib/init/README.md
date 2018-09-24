@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: bitmoneyd.service
-Upstart: bitmoneyd.conf
-OpenRC:  bitmoneyd.openrc
-         bitmoneyd.openrcconf
-CentOS:  bitmoneyd.init
+SystemD: eblockmaild.service
+Upstart: eblockmaild.conf
+OpenRC:  eblockmaild.openrc
+         eblockmaild.openrcconf
+CentOS:  eblockmaild.init
 
 have been made available to assist packagers in creating node packages here.
 

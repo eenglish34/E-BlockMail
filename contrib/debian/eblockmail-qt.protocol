@@ -1,6 +1,6 @@
 [Protocol]
-exec=bitmoney-qt '%u'
-protocol=bitmoney
+exec=eblockmail-qt '%u'
+protocol=eblockmail
 input=none
 output=none
 helper=true

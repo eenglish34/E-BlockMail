@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both bitmoneyd and bitmoney-qt, to make it harder for attackers to
+ * for both eblockmaild and eblockmail-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Bitmoney Core");
+const std::string CLIENT_NAME("Eblockmail Core");
 
 /**
  * Client version number

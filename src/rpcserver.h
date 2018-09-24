@@ -96,7 +96,7 @@ public:
 };
 
 /**
- * Bitmoney RPC command dispatcher.
+ * Eblockmail RPC command dispatcher.
  */
 class CRPCTable
 {

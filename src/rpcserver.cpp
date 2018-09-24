@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Bitmoney developers
+// Copyright (c) 2017 The Eblockmail developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -238,10 +238,10 @@ Value stop(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop Bitmoney server.");
+            "\nStop Eblockmail server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "Bitmoney server stopping";
+    return "Eblockmail server stopping";
 }
 
 
@@ -318,36 +318,36 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* Bitmoney features */
-        {"bitmoney", "masternode", &masternode, true, true, false},
-        {"bitmoney", "listmasternodes", &listmasternodes, true, true, false},
-        {"bitmoney", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"bitmoney", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"bitmoney", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"bitmoney", "masternodedebug", &masternodedebug, true, true, false},
-        {"bitmoney", "startmasternode", &startmasternode, true, true, false},
-        {"bitmoney", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"bitmoney", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"bitmoney", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"bitmoney", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"bitmoney", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"bitmoney", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"bitmoney", "mnbudget", &mnbudget, true, true, false},
-        {"bitmoney", "preparebudget", &preparebudget, true, true, false},
-        {"bitmoney", "submitbudget", &submitbudget, true, true, false},
-        {"bitmoney", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"bitmoney", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"bitmoney", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"bitmoney", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"bitmoney", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"bitmoney", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"bitmoney", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"bitmoney", "checkbudgets", &checkbudgets, true, true, false},
-        {"bitmoney", "mnsync", &mnsync, true, true, false},
-        {"bitmoney", "spork", &spork, true, true, false},
-        {"bitmoney", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* Eblockmail features */
+        {"eblockmail", "masternode", &masternode, true, true, false},
+        {"eblockmail", "listmasternodes", &listmasternodes, true, true, false},
+        {"eblockmail", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"eblockmail", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"eblockmail", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"eblockmail", "masternodedebug", &masternodedebug, true, true, false},
+        {"eblockmail", "startmasternode", &startmasternode, true, true, false},
+        {"eblockmail", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"eblockmail", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"eblockmail", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"eblockmail", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"eblockmail", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"eblockmail", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"eblockmail", "mnbudget", &mnbudget, true, true, false},
+        {"eblockmail", "preparebudget", &preparebudget, true, true, false},
+        {"eblockmail", "submitbudget", &submitbudget, true, true, false},
+        {"eblockmail", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"eblockmail", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"eblockmail", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"eblockmail", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"eblockmail", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"eblockmail", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"eblockmail", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"eblockmail", "checkbudgets", &checkbudgets, true, true, false},
+        {"eblockmail", "mnsync", &mnsync, true, true, false},
+        {"eblockmail", "spork", &spork, true, true, false},
+        {"eblockmail", "getpoolinfo", &getpoolinfo, true, true, false},
 #ifdef ENABLE_WALLET
-        {"bitmoney", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
+        {"eblockmail", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
 
         /* Wallet */
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
@@ -626,16 +626,16 @@ void StartRPCThreads()
         unsigned char rand_pwd[32];
         GetRandBytes(rand_pwd, 32);
         uiInterface.ThreadSafeMessageBox(strprintf(
-                                             _("To use bitmoneyd, or the -server option to bitmoney-qt, you must set an rpcpassword in the configuration file:\n"
+                                             _("To use eblockmaild, or the -server option to eblockmail-qt, you must set an rpcpassword in the configuration file:\n"
                                                "%s\n"
                                                "It is recommended you use the following random password:\n"
-                                               "rpcuser=bitmoneyrpc\n"
+                                               "rpcuser=eblockmailrpc\n"
                                                "rpcpassword=%s\n"
                                                "(you do not need to remember this password)\n"
                                                "The username and password MUST NOT be the same.\n"
                                                "If the file does not exist, create it with owner-readable-only file permissions.\n"
                                                "It is also recommended to set alertnotify so you are notified of problems;\n"
-                                               "for example: alertnotify=echo %%s | mail -s \"Bitmoney Alert\" admin@foo.com\n"),
+                                               "for example: alertnotify=echo %%s | mail -s \"Eblockmail Alert\" admin@foo.com\n"),
                                              GetConfigFile().string(),
                                              EncodeBase58(&rand_pwd[0], &rand_pwd[0] + 32)),
             "", CClientUIInterface::MSG_ERROR | CClientUIInterface::SECURE);
@@ -1086,7 +1086,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> bitmoney-cli " + methodname + " " + args + "\n";
+    return "> eblockmail-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

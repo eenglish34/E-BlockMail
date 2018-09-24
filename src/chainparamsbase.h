@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between bitmoney-cli and bitmoneyd)
- * of a given instance of the Bitmoney system.
+ * CBaseChainParams defines the base parameters (shared between eblockmail-cli and eblockmaild)
+ * of a given instance of the Eblockmail system.
  */
 class CBaseChainParams
 {

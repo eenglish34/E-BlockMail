@@ -471,8 +471,8 @@ void BlockExplorer::showEvent(QShowEvent*)
         updateNavButtons();
 
         if (!GetBoolArg("-txindex", false)) {
-            QString Warning = tr("Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (bitmoney.conf).");
-            QMessageBox::warning(this, "Bitmoney Core Blockchain Explorer", Warning, QMessageBox::Ok);
+            QString Warning = tr("Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (eblockmail.conf).");
+            QMessageBox::warning(this, "Eblockmail Core Blockchain Explorer", Warning, QMessageBox::Ok);
         }
     }
 }

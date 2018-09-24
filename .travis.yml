@@ -54,8 +54,8 @@ script:
     RESULT=$?; if [ $RESULT -eq 0 ] || [ $RESULT -eq 142 ]; then true; else false; fi;
 before_deploy:
 # Set up git user name and tag this commit
-      - git config --local user.name "bitmoney-project"
-      - git config --local user.email "dev@bitmoneycoin.org"
+      - git config --local user.name "eblockmail-project"
+      - git config --local user.email "dev@eblockmailcoin.org"
       - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
       - "./pre-deploy.sh"
 deploy:
@@ -64,7 +64,7 @@ deploy:
   file: out/**/zip/*
   skip_cleanup: true
   on:
-    repo: bitmoney-project/bitmoney
+    repo: eblockmail-project/eblockmail
   on:
     tags: true  
 deploy:
@@ -77,7 +77,7 @@ deploy:
   upload-dir: $TRAVIS_JOB_NUMBER
   acl: public_read
   on:
-    repo: bitmoney-project/bitmoney
+    repo: eblockmail-project/eblockmail
     cache_control: "max-age=21600"
     on:
       all_branches: true

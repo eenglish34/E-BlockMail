@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Eblockmail
+Comment=Eblockmail P2P Cryptocurrency
+Comment[fr]=Eblockmail, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Eblockmail, eşten eşe kriptografik sanal para birimi
+Exec=eblockmail-qt %u
+Terminal=false
+Type=Application
+Icon=eblockmail128
+MimeType=x-scheme-handler/eblockmail;
+Categories=Office;Finance;

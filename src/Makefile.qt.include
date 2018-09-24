@@ -1,34 +1,34 @@
-bin_PROGRAMS += qt/bitmoney-qt
+bin_PROGRAMS += qt/eblockmail-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# bitmoney qt core #
+# eblockmail qt core #
 QT_TS = \
-  qt/locale/bitmoney_bg.ts \
-  qt/locale/bitmoney_ca.ts \
-  qt/locale/bitmoney_cs.ts \
-  qt/locale/bitmoney_da.ts \
-  qt/locale/bitmoney_de.ts \
-  qt/locale/bitmoney_en.ts \
-  qt/locale/bitmoney_en_US.ts \
-  qt/locale/bitmoney_es.ts \
-  qt/locale/bitmoney_fi.ts \
-  qt/locale/bitmoney_fr_FR.ts \
-  qt/locale/bitmoney_hr.ts \
-  qt/locale/bitmoney_it.ts \
-  qt/locale/bitmoney_ja.ts \
-  qt/locale/bitmoney_ko_KR.ts \
-  qt/locale/bitmoney_nl.ts \
-  qt/locale/bitmoney_pl.ts \
-  qt/locale/bitmoney_pt.ts \
-  qt/locale/bitmoney_pt_BR.ts \
-  qt/locale/bitmoney_ro_RO.ts \
-  qt/locale/bitmoney_ru.ts \
-  qt/locale/bitmoney_sk.ts \
-  qt/locale/bitmoney_sv.ts \
-  qt/locale/bitmoney_tr.ts \
-  qt/locale/bitmoney_uk.ts \
-  qt/locale/bitmoney_zh_CN.ts \
-  qt/locale/bitmoney_zh_TW.ts
+  qt/locale/eblockmail_bg.ts \
+  qt/locale/eblockmail_ca.ts \
+  qt/locale/eblockmail_cs.ts \
+  qt/locale/eblockmail_da.ts \
+  qt/locale/eblockmail_de.ts \
+  qt/locale/eblockmail_en.ts \
+  qt/locale/eblockmail_en_US.ts \
+  qt/locale/eblockmail_es.ts \
+  qt/locale/eblockmail_fi.ts \
+  qt/locale/eblockmail_fr_FR.ts \
+  qt/locale/eblockmail_hr.ts \
+  qt/locale/eblockmail_it.ts \
+  qt/locale/eblockmail_ja.ts \
+  qt/locale/eblockmail_ko_KR.ts \
+  qt/locale/eblockmail_nl.ts \
+  qt/locale/eblockmail_pl.ts \
+  qt/locale/eblockmail_pt.ts \
+  qt/locale/eblockmail_pt_BR.ts \
+  qt/locale/eblockmail_ro_RO.ts \
+  qt/locale/eblockmail_ru.ts \
+  qt/locale/eblockmail_sk.ts \
+  qt/locale/eblockmail_sv.ts \
+  qt/locale/eblockmail_tr.ts \
+  qt/locale/eblockmail_uk.ts \
+  qt/locale/eblockmail_zh_CN.ts \
+  qt/locale/eblockmail_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -114,16 +114,16 @@ BITCOIN_MM = \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/bitmoney.moc \
+  qt/eblockmail.moc \
   qt/bitcoinamountfield.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_bitmoney.cpp
-QT_QRC = qt/bitmoney.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_bitmoney_locale.cpp
-QT_QRC_LOCALE = qt/bitmoney_locale.qrc
+QT_QRC_CPP = qt/qrc_eblockmail.cpp
+QT_QRC = qt/eblockmail.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_eblockmail_locale.cpp
+QT_QRC_LOCALE = qt/eblockmail_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -241,12 +241,12 @@ RES_ICONS = \
   qt/res/icons/tx_input.png \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
-  qt/res/icons/unit_bitmoney.png \
-  qt/res/icons/unit_mbitmoney.png \
-  qt/res/icons/unit_ubitmoney.png \
-  qt/res/icons/unit_tbitmoney.png \
-  qt/res/icons/unit_tmbitmoney.png \
-  qt/res/icons/unit_tubitmoney.png
+  qt/res/icons/unit_eblockmail.png \
+  qt/res/icons/unit_meblockmail.png \
+  qt/res/icons/unit_ueblockmail.png \
+  qt/res/icons/unit_teblockmail.png \
+  qt/res/icons/unit_tmeblockmail.png \
+  qt/res/icons/unit_tueblockmail.png
 
 BITCOIN_QT_CPP = \
   qt/bitcoinaddressvalidator.cpp \
@@ -316,7 +316,7 @@ RES_IMAGES = \
   qt/res/images/about.png \
   qt/res/images/splash.png \
   qt/res/images/splash_testnet.png \
-  qt/res/images/bitmoney_logo_horizontal.png \
+  qt/res/images/eblockmail_logo_horizontal.png \
   qt/res/images/downArrow.png \
   qt/res/images/downArrow_small.png \
   qt/res/images/upArrow_small.png \
@@ -332,7 +332,7 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_RC = qt/res/bitmoney-qt-res.rc
+BITCOIN_RC = qt/res/eblockmail-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms
@@ -352,69 +352,69 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_bitmoney_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_eblockmail_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# bitmoney-qt binary #
-qt_bitmoney_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# eblockmail-qt binary #
+qt_eblockmail_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
-qt_bitmoney_qt_SOURCES = qt/bitmoney.cpp
+qt_eblockmail_qt_SOURCES = qt/eblockmail.cpp
 if TARGET_DARWIN
-  qt_bitmoney_qt_SOURCES += $(BITCOIN_MM)
+  qt_eblockmail_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_bitmoney_qt_SOURCES += $(BITCOIN_RC)
+  qt_eblockmail_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_bitmoney_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+qt_eblockmail_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_bitmoney_qt_LDADD += $(LIBBITCOIN_WALLET)
+qt_eblockmail_qt_LDADD += $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_bitmoney_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_eblockmail_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_bitmoney_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBMEMENV) \
+qt_eblockmail_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_bitmoney_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_bitmoney_qt_LIBTOOLFLAGS = --tag CXX
+qt_eblockmail_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_eblockmail_qt_LIBTOOLFLAGS = --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 .SECONDARY: $(QT_QM)
 
-qt/bitmoneystrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
+qt/eblockmailstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: qt/bitmoneystrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: qt/eblockmailstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/bitmoney_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/eblockmail_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@test -f $(@D)/$(<F) || cp -f $< $(@D)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name bitmoney_locale $(@D)/$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name eblockmail_locale $(@D)/$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name bitmoney $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name eblockmail $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
 
 CLEANFILES += $(CLEAN_QT)
 
-bitmoney_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_bitmoney_qt_OBJECTS) qt/bitmoney-qt$(EXEEXT) $(LIBBITCOINQT)
+eblockmail_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_eblockmail_qt_OBJECTS) qt/eblockmail-qt$(EXEEXT) $(LIBBITCOINQT)
 
-bitmoney_qt : qt/bitmoney-qt$(EXEEXT)
+eblockmail_qt : qt/eblockmail-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

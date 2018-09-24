@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Bitmoney"
-            VALUE "FileDescription",    "Bitmoney-cli (OSS RPC client for Bitmoney)"
+            VALUE "CompanyName",        "Eblockmail"
+            VALUE "FileDescription",    "Eblockmail-cli (OSS RPC client for Eblockmail)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "bitmoney-cli"
+            VALUE "InternalName",       "eblockmail-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "bitmoney-cli.exe"
-            VALUE "ProductName",        "Bitmoney-cli"
+            VALUE "OriginalFilename",   "eblockmail-cli.exe"
+            VALUE "ProductName",        "Eblockmail-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

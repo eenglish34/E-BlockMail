@@ -66,15 +66,15 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += bitmoneyd
+  bin_PROGRAMS += eblockmaild
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += bitmoney-cli bitmoney-tx
+  bin_PROGRAMS += eblockmail-cli eblockmail-tx
 endif
 
 .PHONY: FORCE
-# bitmoney core #
+# eblockmail core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   accumulators.h \
@@ -190,7 +190,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between bitmoneyd and bitmoney-qt
+# server: shared between eblockmaild and eblockmail-qt
 libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
@@ -236,7 +236,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between bitmoneyd and bitmoney-qt, but only linked
+# wallet: shared between eblockmaild and eblockmail-qt, but only linked
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
@@ -356,7 +356,7 @@ libzerocoin_libbitcoin_zerocoin_a_SOURCES = \
   libzerocoin/Params.cpp \
   libzerocoin/SerialNumberSignatureOfKnowledge.cpp
 
-# common: shared between bitmoneyd, and bitmoney-qt and non-server tools
+# common: shared between eblockmaild, and eblockmail-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_common_a_SOURCES = \
   accumulators.cpp \
@@ -416,7 +416,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 libbitcoin_util_a_SOURCES += compat/glibcxx_compat.cpp
 endif
 
-# cli: shared between bitmoney-cli and bitmoney-qt
+# cli: shared between eblockmail-cli and eblockmail-qt
 libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_SOURCES = \
   rpcclient.cpp \
@@ -426,7 +426,7 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-bitmoneyd_LDADD = \
+eblockmaild_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UNIVALUE) \
@@ -438,26 +438,26 @@ bitmoneyd_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-bitmoneyd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+eblockmaild_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-bitmoneyd_LDADD += libbitcoin_wallet.a
+eblockmaild_LDADD += libbitcoin_wallet.a
 endif
-bitmoneyd_SOURCES = bitmoneyd.cpp
+eblockmaild_SOURCES = eblockmaild.cpp
 #
 
 if TARGET_WINDOWS
-bitmoneyd_SOURCES += bitmoneyd-res.rc
+eblockmaild_SOURCES += eblockmaild-res.rc
 endif
 
-bitmoneyd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-bitmoneyd_CPPFLAGS = $(BITCOIN_INCLUDES)
-bitmoneyd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+eblockmaild_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+eblockmaild_CPPFLAGS = $(BITCOIN_INCLUDES)
+eblockmaild_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
-# bitmoney-cli binary #
-bitmoney_cli_LDADD = \
+# eblockmail-cli binary #
+eblockmail_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBBITCOIN_UTIL) \
   $(BOOST_LIBS) \
@@ -465,14 +465,14 @@ bitmoney_cli_LDADD = \
   $(CRYPTO_LIBS) \
   $(EVENT_LIBS)
 
-bitmoney_cli_SOURCES = \
-  bitmoney-cli.cpp
+eblockmail_cli_SOURCES = \
+  eblockmail-cli.cpp
 
-bitmoney_cli_CPPFLAGS = $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+eblockmail_cli_CPPFLAGS = $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
 #
 
-# bitmoney-tx binary #
-bitmoney_tx_LDADD = \
+# eblockmail-tx binary #
+eblockmail_tx_LDADD = \
   $(LIBBITCOIN_UNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -482,15 +482,15 @@ bitmoney_tx_LDADD = \
   $(BOOST_LIBS) \
   $(CRYPTO_LIBS)
 
-bitmoney_tx_SOURCES = bitmoney-tx.cpp
-bitmoney_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+eblockmail_tx_SOURCES = eblockmail-tx.cpp
+eblockmail_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-bitmoney_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+eblockmail_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-bitmoney_cli_SOURCES += bitmoney-cli-res.rc
+eblockmail_cli_SOURCES += eblockmail-cli-res.rc
 endif
-bitmoney_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+eblockmail_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h

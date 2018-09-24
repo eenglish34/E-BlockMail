@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitmoney-config.h"
+#include "config/eblockmail-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -79,10 +79,10 @@ void OptionsModel::Init()
         settings.setValue("nZeromintPercentage", 10);
     nZeromintPercentage = settings.value("nZeromintPercentage").toLongLong();
 
-    if (!settings.contains("nAnonymizeBitmoneyAmount"))
-        settings.setValue("nAnonymizeBitmoneyAmount", 1000);
+    if (!settings.contains("nAnonymizeEblockmailAmount"))
+        settings.setValue("nAnonymizeEblockmailAmount", 1000);
 
-    nAnonymizeBitmoneyAmount = settings.value("nAnonymizeBitmoneyAmount").toLongLong();
+    nAnonymizeEblockmailAmount = settings.value("nAnonymizeEblockmailAmount").toLongLong();
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -151,8 +151,8 @@ void OptionsModel::Init()
         SoftSetArg("-zeromintpercentage", settings.value("nZeromintPercentage").toString().toStdString());
     if (settings.contains("nPreferredDenom"))
         SoftSetArg("-preferredDenom", settings.value("nPreferredDenom").toString().toStdString());
-    if (settings.contains("nAnonymizeBitmoneyAmount"))
-        SoftSetArg("-anonymizebitmoneyamount", settings.value("nAnonymizeBitmoneyAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeEblockmailAmount"))
+        SoftSetArg("-anonymizeeblockmailamount", settings.value("nAnonymizeEblockmailAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -163,7 +163,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in bitmoney.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in eblockmail.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -234,8 +234,8 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return QVariant(nZeromintPercentage);
         case ZeromintPrefDenom:
             return QVariant(nPreferredDenom);
-        case AnonymizeBitmoneyAmount:
-            return QVariant(nAnonymizeBitmoneyAmount);
+        case AnonymizeEblockmailAmount:
+            return QVariant(nAnonymizeEblockmailAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -350,10 +350,10 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             emit preferredDenomChanged(nPreferredDenom);
             break;
 
-        case AnonymizeBitmoneyAmount:
-            nAnonymizeBitmoneyAmount = value.toInt();
-            settings.setValue("nAnonymizeBitmoneyAmount", nAnonymizeBitmoneyAmount);
-            emit anonymizeBitmoneyAmountChanged(nAnonymizeBitmoneyAmount);
+        case AnonymizeEblockmailAmount:
+            nAnonymizeEblockmailAmount = value.toInt();
+            settings.setValue("nAnonymizeEblockmailAmount", nAnonymizeEblockmailAmount);
+            emit anonymizeEblockmailAmountChanged(nAnonymizeEblockmailAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

@@ -41,11 +41,11 @@ QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
     case BIT:
-        return QString("bitmoney");
+        return QString("eblockmail");
     case mBIT:
-        return QString("mbitmoney");
+        return QString("meblockmail");
     case uBIT:
-        return QString::fromUtf8("ubitmoney");
+        return QString::fromUtf8("ueblockmail");
     default:
         return QString("???");
     }

@@ -22,9 +22,9 @@ elif [[ $HOST = "x86_64-apple-darwin11" ]]; then
     ARCHIVE_NAME="osx-x64.zip"
 fi
 
-cp $TRAVIS_BUILD_DIR/src/qt/bitmoney-qt $OUTDIR/bin/ || cp $TRAVIS_BUILD_DIR/src/qt/bitmoney-qt.exe $OUTDIR/bin/ || echo "no QT Wallet"
-cp $TRAVIS_BUILD_DIR/src/bitmoneyd $OUTDIR/bin/ || cp $TRAVIS_BUILD_DIR/src/bitmoneyd.exe $OUTDIR/bin/
-cp $TRAVIS_BUILD_DIR/src/bitmoney-cli $OUTDIR/bin/ || cp $TRAVIS_BUILD_DIR/src/bitmoney-cli.exe $OUTDIR/bin/
+cp $TRAVIS_BUILD_DIR/src/qt/eblockmail-qt $OUTDIR/bin/ || cp $TRAVIS_BUILD_DIR/src/qt/eblockmail-qt.exe $OUTDIR/bin/ || echo "no QT Wallet"
+cp $TRAVIS_BUILD_DIR/src/eblockmaild $OUTDIR/bin/ || cp $TRAVIS_BUILD_DIR/src/eblockmaild.exe $OUTDIR/bin/
+cp $TRAVIS_BUILD_DIR/src/eblockmail-cli $OUTDIR/bin/ || cp $TRAVIS_BUILD_DIR/src/eblockmail-cli.exe $OUTDIR/bin/
 strip "$OUTDIR/bin"/* || echo "nothing to strip"
 ls -lah $OUTDIR/bin
 

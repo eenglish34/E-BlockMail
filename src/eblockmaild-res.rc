@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Bitmoney"
-            VALUE "FileDescription",    "bitmoneyd (OSS daemon/client for Bitmoney)"
+            VALUE "CompanyName",        "Eblockmail"
+            VALUE "FileDescription",    "eblockmaild (OSS daemon/client for Eblockmail)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "bitmoneyd"
+            VALUE "InternalName",       "eblockmaild"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "bitmoneyd.exe"
-            VALUE "ProductName",        "bitmoneyd"
+            VALUE "OriginalFilename",   "eblockmaild.exe"
+            VALUE "ProductName",        "eblockmaild"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END
