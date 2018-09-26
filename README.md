@@ -1,4 +1,4 @@
-CatoCoin - Port: 33888 RPC Port: 6082
+E-BlockMail - Port: 3434 RPC Port: 3435
 
 Specs
   Type: Masternode/POS
@@ -20,4 +20,4 @@ Linux Compiling Instruction
 
 when done
   strip ./eblockmaild
-  strip ./catcoin-cli
+  strip ./eblockmail-cli
