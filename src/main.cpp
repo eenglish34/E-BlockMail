@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Eblockmail developers
+// Copyright (c) 2018 The Eblockmail developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -80,7 +80,7 @@ bool fVerifyingBlocks = false;
 unsigned int nCoinCacheSize = 5000;
 bool fAlerts = DEFAULT_ALERTS;
 
-unsigned int nStakeMinAge = 3 * 60 * 60;
+unsigned int nStakeMinAge = 60*60*2; //2 hours
 int64_t nReserveBalance = 0;
 
 /** Fees smaller than this (in duffs) are considered zero fee (for relaying and mining)
@@ -1623,7 +1623,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
             //Check that txid is not already in the chain
             int nHeightTx = 0;
             if (IsTransactionInChain(tx.GetHash(), nHeightTx))
-                return state.Invalid(error("AcceptToMemoryPool : zBit spend tx %s already in block %d", tx.GetHash().GetHex(), nHeightTx),
+                return state.Invalid(error("AcceptToMemoryPool : zEblockmail spend tx %s already in block %d", tx.GetHash().GetHex(), nHeightTx),
                                      REJECT_DUPLICATE, "bad-txns-inputs-spent");
 
             //Check for double spending of serial #'s
@@ -1633,12 +1633,12 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
                 CoinSpend spend = TxInToZerocoinSpend(txIn);
                 int nHeightTx = 0;
                 if (IsSerialInBlockchain(spend.getCoinSerialNumber(), nHeightTx))
-                    return state.Invalid(error("%s : zBit spend with serial %s is already in block %d\n",
+                    return state.Invalid(error("%s : zEblockmail spend with serial %s is already in block %d\n",
                                                 __func__, spend.getCoinSerialNumber().GetHex(), nHeightTx));
 
                 //Is serial in the acceptable range
                 if (!spend.HasValidSerial(Params().Zerocoin_Params()))
-                    return state.Invalid(error("%s : zBit spend with serial %s from tx %s is not in valid range\n",
+                    return state.Invalid(error("%s : zEblockmail spend with serial %s from tx %s is not in valid range\n",
                                                __func__, spend.getCoinSerialNumber().GetHex(), tx.GetHash().GetHex()));
             }
         } else {
@@ -2117,180 +2117,154 @@ double ConvertBitsToDouble(unsigned int nBits)
     return dDiff;
 }
 
+/*int gettier(std::string& payee){
+int temp1=0;
+   // std::vector<CMasternode> vMasternodez = mnodeman.GetFullMasternodeVector();
+    BOOST_FOREACH(PAIRTYPE(const std::string,  int64_t) tier, mnodeman.getmntiermap()) {
+        if(tier.first == payee)
+	{
+		temp1 = tier.second;
+	}
+	}
+return temp1;
+}*/
+/*void addpairtomap(const std::string& payee) {
+static int currentheight = chainActive.Height();
+LogPrintf("CURRENT HEIGHT: %d\n",currentheight);
+//masternodeTiers.insert ( std::pair<std::string,int>(payee,currentheight) );
+masternodeTiers.insert(std::make_pair(payee, currentheight));
+    BOOST_FOREACH(PAIRTYPE(const std::string, int) & tier, masternodeTiers) {
+              LogPrintf("PAYEE: %s RANK: %d\n",tier.first, tier.second);
+              LogPrintf("hiiii\n");
+              LogPrintf("GETTIER: %d\n",gettier(tier.first));
+       }
+}
+*/
 int64_t GetBlockValue(int nHeight)
 {
+//called every block
+//const std::string a = "CZTTdc8k2993pGsJaTM4bLu6fAkJMsK61z";
+//addpairtomap(a);
+//const std::string b = "CVfgGFRsWywjv1CE6iVwZ3XTADiPGqQCVb";
+//addpairtomap(b);
+//masternodeTiers.insert ( std::pair<std::string,int>(b,nHeight) );
+  //  BOOST_FOREACH(PAIRTYPE(const std::string, int) & tier, masternodeTiers) {
+    //          LogPrintf("PAYEE: %s RANK: %d\n",tier.first, tier.second);
+//	      LogPrintf("hiiii\n");
+//	      LogPrintf("GETTIER: %d\n",gettier(b));
+  //     }
+
+/*
+    std::vector<CMasternode> vMasternodez = mnodeman.GetFullMasternodeVector();
+if (!vMasternodez.empty()){
+    BOOST_FOREACH (CMasternode& mn, vMasternodez) {
+	CBitcoinAddress address(mn.pubKeyCollateralAddress.GetID());
+        std::string strPayee = address.ToString();
+	addpairtomap(strPayee);
+        }
+    }
+*/
     int64_t nSubsidy = 0;
 
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
         if (nHeight < 200 && nHeight > 0)
-            return 20 * COIN;
+            return 10000 * COIN;
     }
 
     if (nHeight == 0) {
-        nSubsidy = 70000000 * COIN;
-    }
-	else if (nHeight < 17000 && nHeight > 0) {
-        nSubsidy = 490 * COIN;
-    }
-	else if (nHeight <= 23999 && nHeight >= 17000) {
-        nSubsidy = 560 * COIN;
-    }
-	else if (nHeight <= 30999 && nHeight >= 24000) {
-        nSubsidy = 700 * COIN;
-    }
-	else if (nHeight <= 37999 && nHeight >= 31000) {
-        nSubsidy = 840 * COIN;
-    }
-	else if (nHeight <= 44999 && nHeight >= 38000) {
-        nSubsidy = 980 * COIN;
-    }
-	else if (nHeight <= 51999 && nHeight >= 45000) {
-        nSubsidy = 1120 * COIN;
-    }
-	else if (nHeight <= 58999 && nHeight >= 52000) {
-        nSubsidy = 1260 * COIN;
-    }
-	else if (nHeight <= 65999 && nHeight >= 59000) {
-        nSubsidy = 1400 * COIN;
-    }
-	else if (nHeight <= 72999 && nHeight >= 66000) {
-        nSubsidy = 1540 * COIN;
-    }
-	else if (nHeight <= 79999 && nHeight >= 73000) {
-        nSubsidy = 1680 * COIN;
-    }
-	else if (nHeight <= 86999 && nHeight >= 80000) {
-        nSubsidy = 1820 * COIN;
-    }
-	else if (nHeight <= 93999 && nHeight >= 87000) {
-        nSubsidy = 1960 * COIN;
-    }
-	else if (nHeight <= 100999 && nHeight >= 94000) {
-        nSubsidy = 2100 * COIN;
-    }
-	else if (nHeight <= 108999 && nHeight >= 101000) {
-        nSubsidy = 2240 * COIN;
-    }
-	else if (nHeight <= 115999 && nHeight >= 109000) {
-        nSubsidy = 2170 * COIN;
-    }
-	else if (nHeight <= 122999 && nHeight >= 116000) {
-        nSubsidy = 2100 * COIN;
-    }
-	else if (nHeight <= 129999 && nHeight >= 123000) {
-        nSubsidy = 2030 * COIN;
-    }
-	else if (nHeight <= 136999 && nHeight >= 130000) {
-        nSubsidy = 1960 * COIN;
-    }
-	else if (nHeight <= 143999 && nHeight >= 137000) {
-        nSubsidy = 1890 * COIN;
-    }
-	else if (nHeight <= 150999 && nHeight >= 144000) {
-        nSubsidy = 1820 * COIN;
-    }
-	else if (nHeight <= 157999 && nHeight >= 151000) {
-        nSubsidy = 1750 * COIN;
-    }
-	else if (nHeight <= 164999 && nHeight >= 158000) {
-        nSubsidy = 1680 * COIN;
-    }
-	else if (nHeight <= 171999 && nHeight >= 165000) {
-        nSubsidy = 1610 * COIN;
-    }
-	else if (nHeight <= 178999 && nHeight >= 172000) {
-        nSubsidy = 1540 * COIN;
-    }
-	else if (nHeight <= 185999 && nHeight >= 179000) {
-        nSubsidy = 1470 * COIN;
-    }
-	else if (nHeight <= 192999 && nHeight >= 186000) {
-        nSubsidy = 1400 * COIN;
-    }
-	else if (nHeight <= 199999 && nHeight >= 193000) {
-        nSubsidy = 1330 * COIN;
-    }
-	else if (nHeight <= 206999 && nHeight >= 200000) {
-        nSubsidy = 1260 * COIN;
-    }
-	else if (nHeight <= 213999 && nHeight >= 207000) {
-        nSubsidy = 1190 * COIN;
-    }
-	else if (nHeight <= 220999 && nHeight >= 214000) {
-        nSubsidy = 1120 * COIN;
-    }
-	else if (nHeight <= 227999 && nHeight >= 221000) {
-        nSubsidy = 1050 * COIN;
-    }
-	else if (nHeight <= 234999 && nHeight >= 228000) {
-        nSubsidy = 980 * COIN;
-    }
-	else if (nHeight <= 241999 && nHeight >= 235000) {
-        nSubsidy = 910 * COIN;
-    }
-	else if (nHeight <= 248999 && nHeight >= 242000) {
-        nSubsidy = 840 * COIN;
-    }
-	else if (nHeight <= 255999 && nHeight >= 249000) {
-        nSubsidy = 770 * COIN;
-    }
-	else if (nHeight <= 262999 && nHeight >= 256000) {
-        nSubsidy = 700 * COIN;
-    }
-	else if (nHeight <= 269999 && nHeight >= 263000) {
-        nSubsidy = 686 * COIN;
-    }
-	else if (nHeight <= 266999 && nHeight >= 270000) {
-        nSubsidy = 672 * COIN;
-    }
-	else if (nHeight <= 283999 && nHeight >= 277000) {
-        nSubsidy = 658 * COIN;
-    }
-	else if (nHeight <= 290999 && nHeight >= 284000) {
-        nSubsidy = 644 * COIN;
-    }
-	else if (nHeight <= 297999 && nHeight >= 291000) {
-        nSubsidy = 630 * COIN;
-    }
-	else if (nHeight <= 304999 && nHeight >= 298000) {
-        nSubsidy = 616 * COIN;
-    }
-	else if (nHeight <= 311999 && nHeight >= 305000) {
-        nSubsidy = 602 * COIN;
-    }
-	else if (nHeight <= 318999 && nHeight >= 312000) {
-        nSubsidy = 588 * COIN;
-    }
-	else if (nHeight <= 325999 && nHeight >= 319000) {
-        nSubsidy = 574 * COIN;
-    }
-	else if (nHeight <= 332999 && nHeight >= 3260000) {
-        nSubsidy = 560 * COIN;
-    }
-	else if (nHeight <= 339999 && nHeight >= 333000) {
-        nSubsidy = 546 * COIN;
-    }
-	else if (nHeight <= 346999 && nHeight >= 340000) {
-        nSubsidy = 532 * COIN;
-    }
-	else if (nHeight <= 353999 && nHeight >= 347000) {
-        nSubsidy = 518 * COIN;
-    }
-	else if (nHeight <= 360999 && nHeight >= 354000) {
-        nSubsidy = 504 * COIN;
-    }
-	else if (nHeight <= 367999 && nHeight >= 361000) {
-        nSubsidy = 490 * COIN;
-    }
-	else if (nHeight <= 374999 && nHeight >= 368000) {
-        nSubsidy = 476 * COIN;
-    }
-	else if (nHeight >= 375000) {
-        nSubsidy = 462 * COIN;
-    }
-    else {
-        nSubsidy = 0 * COIN;
-    }
+        return 1 * COIN;  //genesis
+    } else if(nHeight == 1 ){
+        return  400000 * COIN;  //400k premine
+    } else if(nHeight > 1 && nHeight <= GetSporkValue(SPORK_35_MOVE_REWARDS)) {
+	if (nHeight < 302) {
+	return  .01 * COIN;
+	} else {
+	return .001 * COIN;
+	}
+//switch POS
+    } else if (nHeight > GetSporkValue(SPORK_35_MOVE_REWARDS)) {
+//	if (nHeight < 20161) {
+//		return .01 * COIN;
+//	}
+	int enabled_nodes = mnodeman.CountEnabled();
+	if (10003 == GetSporkValue(SPORK_35_MOVE_REWARDS)) {
+		nSubsidy = 1.76 * COIN;
+	} else if (10005 == GetSporkValue(SPORK_35_MOVE_REWARDS)) {
+		nSubsidy = 2.80 * COIN;
+        } else if (10010 == GetSporkValue(SPORK_35_MOVE_REWARDS)) {
+                nSubsidy = 3.10 * COIN;
+        } else if (10015 == GetSporkValue(SPORK_35_MOVE_REWARDS)) {
+                nSubsidy = 3.60 * COIN;
+        } else if (10020 == GetSporkValue(SPORK_35_MOVE_REWARDS)) {
+                nSubsidy = 4.05 * COIN;
+        } else if (10025 == GetSporkValue(SPORK_35_MOVE_REWARDS)) {
+                nSubsidy = 4.30 * COIN;
+	} else if (nHeight <= GetSporkValue(SPORK_18_LAST_2000_COLLAT_BLOCK)) {
+		nSubsidy =  5.2 * COIN;
+//	} else if (enabled_nodes <= 30) {
+       } else if (nHeight <= GetSporkValue(SPORK_19_LAST_2400_COLLAT_BLOCK)) {
+		nSubsidy = 5.2 * COIN;
+	} else if (nHeight <= GetSporkValue(SPORK_20_LAST_2550_COLLAT_BLOCK)) {
+		nSubsidy = 5.64 * COIN;
+	} else if (nHeight <= GetSporkValue(SPORK_21_LAST_2750_COLLAT_BLOCK)) {
+		nSubsidy =  7.36* COIN;
+	} else if (nHeight <= GetSporkValue(SPORK_22_LAST_2950_COLLAT_BLOCK)) {
+		nSubsidy = 8.05 * COIN;
+	} else if (nHeight <= GetSporkValue(SPORK_23_LAST_3150_COLLAT_BLOCK)) {
+                nSubsidy = 8.45 * COIN;
+       } else if (nHeight <= GetSporkValue(SPORK_24_LAST_3350_COLLAT_BLOCK)) {
+                nSubsidy = 8.88 * COIN;
+       } else if (nHeight <= GetSporkValue(SPORK_25_LAST_3600_COLLAT_BLOCK)) {
+                nSubsidy = 9.32 * COIN;
+       } else if (nHeight <= GetSporkValue(SPORK_26_LAST_3850_COLLAT_BLOCK)) {
+                nSubsidy = 9.78 * COIN;
+       } else if (nHeight <= GetSporkValue(SPORK_27_LAST_4150_COLLAT_BLOCK)) {
+                nSubsidy = 10.27 * COIN;
+       } else if (nHeight <= GetSporkValue(SPORK_28_LAST_4400_COLLAT_BLOCK)) {
+                nSubsidy = 10.79 * COIN;
+       } else if (nHeight <= GetSporkValue(SPORK_29_LAST_4750_COLLAT_BLOCK)) {
+                nSubsidy = 11.33 * COIN;
+       } else if (nHeight <= GetSporkValue(SPORK_30_LAST_5050_COLLAT_BLOCK)) {
+                nSubsidy = 11.89 * COIN;
+       } else if (nHeight <= GetSporkValue(SPORK_31_LAST_5400_COLLAT_BLOCK)) {
+                nSubsidy = 12.49 * COIN;
+       } else if (nHeight <= GetSporkValue(SPORK_32_LAST_5800_COLLAT_BLOCK)) {
+                nSubsidy = 13.11 * COIN;
+       } else if (nHeight <= GetSporkValue(SPORK_33_LAST_6200_COLLAT_BLOCK)) {
+                nSubsidy = 13.77 * COIN;
+	} else if (nHeight <= GetSporkValue(SPORK_34_LAST_6600_COLLAT_BLOCK)) {
+                nSubsidy = 14.46 * COIN;
+	} else if (6600 == GetSporkValue(SPORK_17_CURRENT_MN_COLLATERAL)) {
+                nSubsidy = 15.18 * COIN;
+	} else if (7100 == GetSporkValue(SPORK_17_CURRENT_MN_COLLATERAL)) {
+                nSubsidy = 15.94 * COIN;
+	} else {
+	nSubsidy = 1.76 * COIN;
+	}
+}
+/*else if(nHeight > 100 && nHeight <= 200) { //PoS phase
+		nSubsidy = 5 * COIN; // "instamine"
+    } else if(nHeight > 200 && nHeight <= 300) {
+		nSubsidy = 10 * COIN;
+    } else if(nHeight > 300 && nHeight <= 400) { 
+		nSubsidy = 15 * COIN;
+    } else if(nHeight > 400 && nHeight <= 1500) { 
+		nSubsidy = 25 * COIN;
+    } else if(nHeight > 1500 && nHeight <= 100000) { 
+		nSubsidy = 50 * COIN;
+    } else if(nHeight > 100000 && nHeight <= 210000) {//switch PoS 
+		nSubsidy = 50 * COIN;
+    } else if(nHeight > 210000 && nHeight <= 420000) { 
+		nSubsidy = 20 * COIN;
+    } else if(nHeight > 420000 && nHeight <= 630000) { 
+		nSubsidy = 10 * COIN;
+    } else if(nHeight > 630000 && nHeight <= 840000) { 
+		nSubsidy = 5 * COIN;
+    } else if(nHeight > 840000 && nHeight <= 1050000) { 
+                nSubsidy = 3 * COIN;
+    } else {
+        nSubsidy = 1 * COIN;
+    }*/
     return nSubsidy;
 }
 
@@ -2302,170 +2276,12 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
         if (nHeight < 200)
             return 0;
     }
-
-     if (nHeight < 17000) {
-        ret = blockValue * 0.90;
-    }
-	else if (nHeight <= 23999 && nHeight >= 17000) {
-        ret = blockValue * 0.70;
-    }
-	else if (nHeight <= 30999 && nHeight >= 24000) {
-        ret = blockValue * 0.75;
-    }
-	else if (nHeight <= 37999 && nHeight >= 31000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 44999 && nHeight >= 38000) {
-        ret = blockValue * 0.75;
-    }
-	else if (nHeight <= 51999 && nHeight >= 45000) {
-        ret = blockValue * 0.70;
-    }
-	else if (nHeight <= 58999 && nHeight >= 52000) {
-        ret = blockValue * 0.65;
-    }
-	else if (nHeight <= 65999 && nHeight >= 59000) {
-        ret = blockValue * 0.90;
-    }
-	else if (nHeight <= 72999 && nHeight >= 66000) {
-        ret = blockValue * 0.85;
-    }
-	else if (nHeight <= 79999 && nHeight >= 73000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 86999 && nHeight >= 80000) {
-        ret = blockValue * 0.75;
-    }
-	else if (nHeight <= 93999 && nHeight >= 87000) {
-        ret = blockValue * 0.70;
-    }
-	else if (nHeight <= 100999 && nHeight >= 94000) {
-        ret = blockValue * 0.65;
-    }
-	else if (nHeight <= 108999 && nHeight >= 101000) {
-        ret = blockValue * 0.60;
-    }
-	else if (nHeight <= 115999 && nHeight >= 109000) {
-        ret = blockValue * 0.90;
-    }
-	else if (nHeight <= 122999 && nHeight >= 116000) {
-        ret = blockValue * 0.85;
-    }
-	else if (nHeight <= 129999 && nHeight >= 123000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 136999 && nHeight >= 130000) {
-        ret = blockValue * 0.75;
-    }
-	else if (nHeight <= 143999 && nHeight >= 137000) {
-        ret = blockValue * 0.70;
-    }
-	else if (nHeight <= 150999 && nHeight >= 144000) {
-        ret = blockValue * 0.65;
-    }
-	else if (nHeight <= 157999 && nHeight >= 151000) {
-        ret = blockValue * 0.90;
-    }
-	else if (nHeight <= 164999 && nHeight >= 158000) {
-        ret = blockValue * 0.85;
-    }
-	else if (nHeight <= 171999 && nHeight >= 165000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 178999 && nHeight >= 172000) {
-        ret = blockValue * 0.75;
-    }
-	else if (nHeight <= 185999 && nHeight >= 179000) {
-        ret = blockValue * 0.70;
-    }
-	else if (nHeight <= 192999 && nHeight >= 186000) {
-        ret = blockValue * 0.65;
-    }
-	else if (nHeight <= 199999 && nHeight >= 193000) {
-        ret = blockValue * 0.60;
-    }
-	else if (nHeight <= 206999 && nHeight >= 200000) {
-        ret = blockValue * 0.95;
-    }
-	else if (nHeight <= 213999 && nHeight >= 207000) {
-        ret = blockValue * 0.90;
-    }
-	else if (nHeight <= 220999 && nHeight >= 214000) {
-        ret = blockValue * 0.85;
-    }
-	else if (nHeight <= 227999 && nHeight >= 221000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 234999 && nHeight >= 228000) {
-        ret = blockValue * 0.75;
-    }
-	else if (nHeight <= 241999 && nHeight >= 235000) {
-        ret = blockValue * 0.70;
-    }
-	else if (nHeight <= 248999 && nHeight >= 242000) {
-        ret = blockValue * 0.65;
-    }
-	else if (nHeight <= 255999 && nHeight >= 249000) {
-        ret = blockValue * 0.60;
-    }
-	else if (nHeight <= 262999 && nHeight >= 256000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 269999 && nHeight >= 263000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 266999 && nHeight >= 270000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 283999 && nHeight >= 277000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 290999 && nHeight >= 284000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 297999 && nHeight >= 291000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 304999 && nHeight >= 298000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 311999 && nHeight >= 305000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 318999 && nHeight >= 312000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 325999 && nHeight >= 319000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 332999 && nHeight >= 3260000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 339999 && nHeight >= 333000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 346999 && nHeight >= 340000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 353999 && nHeight >= 347000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 360999 && nHeight >= 354000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 367999 && nHeight >= 361000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight <= 374999 && nHeight >= 368000) {
-        ret = blockValue * 0.80;
-    }
-	else if (nHeight >= 375000) {
-        ret = blockValue * 0.90;
-    }
-    else {
-		ret = blockValue * 0.50;
+	
+	// 80% for Masternodes
+	if (nHeight > 1) {
+		  ret = blockValue  / 100 * 70; //70%
 	}
-	return ret;
+    return ret;
 }
 
 bool IsInitialBlockDownload()
@@ -2477,7 +2293,7 @@ bool IsInitialBlockDownload()
     if (lockIBDState)
         return false;
     bool state = (chainActive.Height() < pindexBestHeader->nHeight - 24 * 6 ||
-                  pindexBestHeader->GetBlockTime() < GetTime() - 6 * 60 * 60) && chainActive.Height() > 3030; // ~144 blocks behind -> 2 x fork detection time
+                  pindexBestHeader->GetBlockTime() < GetTime() - 6 * 60 * 60); // ~144 blocks behind -> 2 x fork detection time
     if (!state)
         lockIBDState = true;
     return state;
@@ -2570,7 +2386,8 @@ void Misbehaving(NodeId pnode, int howmuch)
     int banscore = GetArg("-banscore", 100);
     if (state->nMisbehavior >= banscore && state->nMisbehavior - howmuch < banscore) {
         LogPrintf("Misbehaving: %s (%d -> %d) BAN THRESHOLD EXCEEDED\n", state->name, state->nMisbehavior - howmuch, state->nMisbehavior);
-        state->fShouldBan = true;
+        //state->fShouldBan = true;
+        //DEBUG!!! disable banning
     } else
         LogPrintf("Misbehaving: %s (%d -> %d)\n", state->name, state->nMisbehavior - howmuch, state->nMisbehavior);
 }
@@ -2896,7 +2713,7 @@ void ThreadScriptCheck()
     scriptcheckqueue.Thread();
 }
 
-void RecalculateZBITMinted()
+void RecalculateZCATOMinted()
 {
     CBlockIndex *pindex = chainActive[Params().Zerocoin_AccumulatorStartHeight()];
     int nHeightEnd = chainActive.Height();
@@ -2928,14 +2745,14 @@ void RecalculateZBITMinted()
     pblocktree->Flush();
 }
 
-void RecalculateZBITSpent()
+void RecalculateZCATOSpent()
 {
     CBlockIndex* pindex = chainActive[Params().Zerocoin_AccumulatorStartHeight()];
     while (true) {
         if (pindex->nHeight % 1000 == 0)
             LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
 
-        //Rewrite zBIT supply
+        //Rewrite zCATO supply
         CBlock block;
         assert(ReadBlockFromDisk(block, pindex));
 
@@ -2944,13 +2761,13 @@ void RecalculateZBITSpent()
         //Reset the supply to previous block
         pindex->mapZerocoinSupply = pindex->pprev->mapZerocoinSupply;
 
-        //Add mints to zBIT supply
+        //Add mints to zCATO supply
         for (auto denom : libzerocoin::zerocoinDenomList) {
             long nDenomAdded = count(pindex->vMintDenominationsInBlock.begin(), pindex->vMintDenominationsInBlock.end(), denom);
             pindex->mapZerocoinSupply.at(denom) += nDenomAdded;
         }
 
-        //Remove spends from zBIT supply
+        //Remove spends from zCATO supply
         for (auto denom : listDenomsSpent)
             pindex->mapZerocoinSupply.at(denom)--;
 
@@ -2965,7 +2782,7 @@ void RecalculateZBITSpent()
     pblocktree->Flush();
 }
 
-bool RecalculateBITSupply(int nHeightStart)
+bool RecalculateCATOSupply(int nHeightStart)
 {
     if (nHeightStart > chainActive.Height())
         return false;
@@ -3152,7 +2969,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                 if (zerocoinDB->ReadCoinSpend(spend.getCoinSerialNumber(), hashTxFromDB)) {
                     if(IsSerialInBlockchain(spend.getCoinSerialNumber(), nHeightTxSpend)) {
                         if(!fVerifyingBlocks || (fVerifyingBlocks && pindex->nHeight > nHeightTxSpend))
-                            return state.DoS(100, error("%s : zBit with serial %s is already in the block %d\n",
+                            return state.DoS(100, error("%s : zEblockmail with serial %s is already in the block %d\n",
                                                         __func__, spend.getCoinSerialNumber().GetHex(), nHeightTxSpend));
                     }
                 }
@@ -3202,9 +3019,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     std::list<libzerocoin::CoinDenomination> listSpends = ZerocoinSpendListFromBlock(block);
 
     if (!fVerifyingBlocks && pindex->nHeight == Params().Zerocoin_StartHeight() + 1) {
-        RecalculateZBITMinted();
-        RecalculateZBITSpent();
-        RecalculateBITSupply(1);
+        RecalculateZCATOMinted();
+        RecalculateZCATOSpent();
+        RecalculateCATOSupply(1);
     }
 
     // Initialize zerocoin supply to the supply from previous block
@@ -3243,7 +3060,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
     pindex->nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
 
-//    LogPrintf("XX69----------> ConnectBlock(): nValueOut: %s, nValueIn: %s, nFees: %s, nMint: %s zBitSpent: %s\n",
+//    LogPrintf("XX69----------> ConnectBlock(): nValueOut: %s, nValueIn: %s, nFees: %s, nMint: %s zEblockmailSpent: %s\n",
 //              FormatMoney(nValueOut), FormatMoney(nValueIn),
 //              FormatMoney(nFees), FormatMoney(pindex->nMint), FormatMoney(nAmountZerocoinSpent));
 
@@ -3405,14 +3222,19 @@ void static UpdateTip(CBlockIndex* pindexNew)
 {
     chainActive.SetTip(pindexNew);
 
-    // If turned on AutoZeromint will automatically convert BIT to zBIT
+    // If turned on AutoZeromint will automatically convert CATO to zCATO
     if (pwalletMain->isZeromintEnabled ())
         pwalletMain->AutoZeromint ();
 
     // New best block
     nTimeBestReceived = GetTime();
     mempool.AddTransactionsUpdated(1);
-
+/*
+const std::string a = "CZTTdc8k2993pGsJaTM4bLu6fAkJMsK61z";
+mnodeman.addtomap(a);
+const std::string b = "CVfgGFRsWywjv1CE6iVwZ3XTADiPGqQCVb";
+mnodeman.addtomap(b);
+*/
     LogPrintf("UpdateTip: new best=%s  height=%d  log2_work=%.8g  tx=%lu  date=%s progress=%f  cache=%u\n",
         chainActive.Tip()->GetBlockHash().ToString(), chainActive.Height(), log(chainActive.Tip()->nChainWork.getdouble()) / log(2.0), (unsigned long)chainActive.Tip()->nChainTx,
         DateTimeStrFormat("%Y-%m-%d %H:%M:%S", chainActive.Tip()->GetBlockTime()),
@@ -4257,13 +4079,13 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         if (!CheckTransaction(tx, fZerocoinActive, chainActive.Height() + 1 >= Params().Zerocoin_StartHeight(), state))
             return error("CheckBlock() : CheckTransaction failed");
 
-        // double check that there are no double spent zBit spends in this block
+        // double check that there are no double spent zEblockmail spends in this block
         if (tx.IsZerocoinSpend()) {
             for (const CTxIn txIn : tx.vin) {
                 if (txIn.scriptSig.IsZerocoinSpend()) {
                     libzerocoin::CoinSpend spend = TxInToZerocoinSpend(txIn);
                     if (count(vBlockSerials.begin(), vBlockSerials.end(), spend.getCoinSerialNumber()))
-                        return state.DoS(100, error("%s : Double spending of zBit serial %s in block\n Block: %s",
+                        return state.DoS(100, error("%s : Double spending of zEblockmail serial %s in block\n Block: %s",
                                                     __func__, spend.getCoinSerialNumber().GetHex(), block.ToString()));
                     vBlockSerials.emplace_back(spend.getCoinSerialNumber());
                 }
@@ -4581,7 +4403,7 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
         }
     }
     if (nMints || nSpends)
-        LogPrintf("%s : block contains %d zBit mints and %d zBit spends\n", __func__, nMints, nSpends);
+        LogPrintf("%s : block contains %d zEblockmail mints and %d zEblockmail spends\n", __func__, nMints, nSpends);
 
     // ppcoin: check proof-of-stake
     // Limited duplicity on stake: prevents block flood attack
@@ -4641,6 +4463,11 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
         if (pwalletMain->fCombineDust)
             pwalletMain->AutoCombineDust();
     }
+  //  BOOST_FOREACH(PAIRTYPE(const std::string, int) & tier, masternodeTiers) {
+    //          LogPrintf("PAYEE: %s RANK: %d\n",tier.first, tier.second);
+      //        LogPrintf("hiiii\n");
+      // }
+
 
     LogPrintf("%s : ACCEPTED in %ld milliseconds with size=%d\n", __func__, GetTimeMillis() - nStartTime,
               pblock->GetSerializeSize(SER_DISK, CLIENT_VERSION));

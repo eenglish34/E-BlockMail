@@ -154,7 +154,7 @@ Value masternode(const Array& params, bool fHelp)
             "  debug        - Print masternode status\n"
             "  genkey       - Generate new masternodeprivkey\n"
             "  outputs      - Print masternode compatible outputs\n"
-            "  start        - Start masternode configured in eblockmail.conf\n"
+            "  start        - Start masternode configured in eblockmail2.conf\n"
             "  start-alias  - Start single masternode by assigned alias configured in masternode.conf\n"
             "  start-<mode> - Start masternodes configured in masternode.conf (<mode>: 'all', 'missing', 'disabled')\n"
             "  status       - Print masternode status information\n"
@@ -302,7 +302,9 @@ Value listmasternodes(const Array& params, bool fHelp)
             obj.push_back(Pair("outidx", (uint64_t)oIdx));
             obj.push_back(Pair("status", strStatus));
             obj.push_back(Pair("addr", CBitcoinAddress(mn->pubKeyCollateralAddress.GetID()).ToString()));
+            obj.push_back(Pair("ip:port", mn->addr.ToString()));
             obj.push_back(Pair("version", mn->protocolVersion));
+            //obj.push_back(Pair("level", mn->tier));
             obj.push_back(Pair("lastseen", (int64_t)mn->lastPing.sigTime));
             obj.push_back(Pair("activetime", (int64_t)(mn->lastPing.sigTime - mn->sigTime)));
             obj.push_back(Pair("lastpaid", (int64_t)mn->GetLastPaid()));
@@ -325,7 +327,7 @@ Value masternodeconnect(const Array& params, bool fHelp)
             "1. \"address\"     (string, required) IP or net address to connect to\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("masternodeconnect", "\"192.168.0.6:7070\"") + HelpExampleRpc("masternodeconnect", "\"192.168.0.6:7070\""));
+            HelpExampleCli("masternodeconnect", "\"192.168.0.6:34888\"") + HelpExampleRpc("masternodeconnect", "\"192.168.0.6:34888\""));
 
     std::string strAddress = params[0].get_str();
 

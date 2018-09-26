@@ -25,13 +25,13 @@ public:
     }
 
     enum Status {
-        Confirmed, /**< Have 1 or more confirmations (normal tx) or fully mature (mined tx) **/
+        Confirmed, /**< Have 6 or more confirmations (normal tx) or fully mature (mined tx) **/
         /// Normal (sent/received) transactions
         OpenUntilDate,  /**< Transaction not yet final, waiting for date */
         OpenUntilBlock, /**< Transaction not yet final, waiting for block */
         Offline,        /**< Not sent to any other nodes **/
         Unconfirmed,    /**< Not yet mined into a block **/
-        Confirming,     /**< Confirmed, but waiting for atleast 1 confirmation. **/
+        Confirming,     /**< Confirmed, but waiting for the recommended number of confirmations **/
         Conflicted,     /**< Conflicts with other transaction or mempool **/
         /// Generated (mined) transactions
         Immature,       /**< Mined but waiting for maturity */
@@ -84,7 +84,7 @@ public:
         ZerocoinMint,
         ZerocoinSpend,
         RecvFromZerocoinSpend,
-        ZerocoinSpend_Change_zBit,
+        ZerocoinSpend_Change_zEblockmail,
         ZerocoinSpend_FromMe,
         RecvWithObfuscation,
         ObfuscationDenominate,
@@ -95,7 +95,7 @@ public:
     };
 
     /** Number of confirmation recommended for accepting a transaction */
-    static const int RecommendedNumConfirmations = 1;
+    static const int RecommendedNumConfirmations = 6;
 
     TransactionRecord() : hash(), time(0), type(Other), address(""), debit(0), credit(0), idx(0)
     {

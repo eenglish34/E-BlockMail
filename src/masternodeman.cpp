@@ -215,6 +215,41 @@ bool CMasternodeMan::Add(CMasternode& mn)
     return false;
 }
 
+/*int64_t CMasternodeMan::gettier(const std::string& payee){
+int64_t temp1=0;
+   // std::vector<CMasternode> vMasternodez = mnodeman.GetFullMasternodeVector();
+    BOOST_FOREACH(PAIRTYPE(const std::string,  int64_t) tier, mnodeman.getmntiermap()) {
+        if(tier.first == payee)
+        {
+                temp1 = tier.second;
+        }
+        }
+return temp1;
+}
+void CMasternodeMan::addtomap(const std::string& payee)
+{
+    LOCK(cs);
+int64_t currentheight = (int64_t)chainActive.Height();
+LogPrintf("CURRENT HEIGHT: %d\n",currentheight);
+//masternodeTiers.insert ( std::pair<std::string,int>(payee,currentheight) );
+masternodeTiers.insert(std::make_pair(payee, currentheight));
+    BOOST_FOREACH(PAIRTYPE(const std::string, int64_t)  tier, masternodeTiers) {
+              LogPrintf("PAYEE: %s RANK: %d\n",tier.first, tier.second);
+              LogPrintf("hiiii\n");
+              LogPrintf("GETTIER: %d\n",gettier(tier.first));
+       }
+
+    //CMasternode* pmn = Find(mn.vin);
+    //if (pmn == NULL) {
+      //  LogPrint("masternode", "CMasternodeMan: Adding new Masternode %s - %i now\n", mn.vin.prevout.hash.ToString(), size() + 1);
+       // vMasternodes.push_back(mn);
+        //return true;
+   // }
+
+    //return false;
+}
+*/
+
 void CMasternodeMan::AskForMN(CNode* pnode, CTxIn& vin)
 {
     std::map<COutPoint, int64_t>::iterator i = mWeAskedForMasternodeListEntry.find(vin.prevout);
@@ -501,6 +536,9 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
 
         //make sure it has as many confirmations as there are masternodes
         if (mn.GetMasternodeInputAge() < nMnCount) continue;
+	//if (mn.tier == 0){
+	// mn.UpdateTier(1);
+//	}
 
         vecMasternodeLastPaid.push_back(make_pair(mn.SecondsSincePayment(), mn.vin));
     }
@@ -654,7 +692,7 @@ std::vector<pair<int, CMasternode> > CMasternodeMan::GetMasternodeRanks(int64_t 
         if (mn.protocolVersion < minProtocol) continue;
 
         if (!mn.IsEnabled()) {
-            vecMasternodeScores.push_back(make_pair(9999, mn));
+            vecMasternodeScores.push_back(make_pair(19999, mn));
             continue;
         }
 
@@ -925,8 +963,8 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         }
 
         if (Params().NetworkID() == CBaseChainParams::MAIN) {
-            if (addr.GetPort() != 7070) return;
-        } else if (addr.GetPort() == 7070)
+            if (addr.GetPort() != 34888) return;
+        } else if (addr.GetPort() == 34888)
             return;
 
         //search existing Masternode list, this is where we update existing Masternodes with new dsee broadcasts
@@ -986,7 +1024,47 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
-        CTxOut vout = CTxOut(9999.99 * COIN, obfuScationPool.collateralPubKey);
+    CAmount collat_required;
+    collat_required = 999.99 * COIN;
+    int active_nodes = mnodeman.CountEnabled();
+    if (active_nodes <= 30) {
+	collat_required = 999.99 * COIN;
+    } else if (active_nodes <= 60) {
+	collat_required = 1199.99 * COIN;
+    } else if (active_nodes <= 90) {
+	collat_required = 1299.99 * COIN;
+    } else if (active_nodes <= 120) {
+        collat_required = 1399.99 * COIN;
+    } else if (active_nodes <= 150) {
+        collat_required = 1424.99 * COIN;
+    } else if (active_nodes <= 180) {
+        collat_required = 1549.99 * COIN;
+    } else if (active_nodes <= 210) {
+        collat_required = 1674.99 * COIN;
+    } else if (active_nodes <= 240) {
+        collat_required = 1799.99 * COIN;
+    } else if (active_nodes <= 270) {
+        collat_required = 1924.99 * COIN;
+    } else if (active_nodes <= 300) {
+        collat_required = 2074.99 * COIN;
+    } else if (active_nodes <= 330) {
+        collat_required = 2274.99 * COIN;
+    } else if (active_nodes <= 360) {
+        collat_required = 2449.99 * COIN;
+    } else if (active_nodes <= 390) {
+        collat_required = 2674.99 * COIN;
+    } else if (active_nodes <= 420) {
+        collat_required = 2899.99 * COIN;
+    } else if (active_nodes <= 450) {
+        collat_required = 3099.99 * COIN;
+    } else if (active_nodes <= 480) {
+        collat_required = 3374.99 * COIN;
+    } else if (active_nodes <= 510) {
+        collat_required = 3674.99 * COIN;
+    } else if (active_nodes >= 511) {
+        collat_required = 3999.99 * COIN;
+    }
+        CTxOut vout = CTxOut(999.99*COIN, obfuScationPool.collateralPubKey);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
 
@@ -1005,13 +1083,13 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
             }
 
             // verify that sig time is legit in past
-            // should be at least not earlier than block when 210000 BIT tx got MASTERNODE_MIN_CONFIRMATIONS
+            // should be at least not earlier than block when 50000 CATO tx got MASTERNODE_MIN_CONFIRMATIONS
             uint256 hashBlock = 0;
             CTransaction tx2;
             GetTransaction(vin.prevout.hash, tx2, hashBlock, true);
             BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
             if (mi != mapBlockIndex.end() && (*mi).second) {
-                CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 210000 BIT tx -> 1 confirmation
+                CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 50000 CATO tx -> 1 confirmation
                 CBlockIndex* pConfIndex = chainActive[pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1]; // block where tx got MASTERNODE_MIN_CONFIRMATIONS
                 if (pConfIndex->GetBlockTime() > sigTime) {
                     LogPrint("masternode","mnb - Bad sigTime %d for Masternode %s (%i conf block is at %d)\n",

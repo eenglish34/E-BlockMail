@@ -11,9 +11,9 @@
 static const int MODEL_UPDATE_DELAY = 250;
 
 /* AskPassphraseDialog -- Maximum passphrase length */
-static const int MAX_PASSBRKSASE_SIZE = 1024;
+static const int MAX_PASSCATOASE_SIZE = 1024;
 
-/* eblockmail GUI -- Size of icons in status bar */
+/* Eblockmail GUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -32,7 +32,7 @@ static const bool DEFAULT_SPLASHSCREEN = true;
 /* Transaction list -- TX status decoration - offline */
 #define COLOR_TX_STATUS_OFFLINE QColor(192, 192, 192)
 /* Transaction list -- TX status decoration - default color */
-#define COLOR_BLACK QColor(255, 255, 255)
+#define COLOR_BLACK QColor(51, 51, 51)
 
 /* Tooltips longer than this (in characters) are converted into rich text,
    so that they can be word-wrapped.

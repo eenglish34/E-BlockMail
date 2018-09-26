@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: eblockmaild.service
-Upstart: eblockmaild.conf
-OpenRC:  eblockmaild.openrc
-         eblockmaild.openrcconf
-CentOS:  eblockmaild.init
+SystemD: jiyod.service
+Upstart: jiyod.conf
+OpenRC:  jiyod.openrc
+         jiyod.openrcconf
+CentOS:  jiyod.init
 
 have been made available to assist packagers in creating node packages here.
 

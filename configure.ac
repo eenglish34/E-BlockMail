@@ -1,12 +1,12 @@
 dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
-define(_CLIENT_VERSION_MAJOR, 4)
+define(_CLIENT_VERSION_MAJOR, 2)
 define(_CLIENT_VERSION_MINOR, 1)
-define(_CLIENT_VERSION_REVISION, 1)
+define(_CLIENT_VERSION_REVISION, 0)
 define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2017)
-AC_INIT([eblockmail Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[www.eblockmail.org],[eblockmail])
+AC_INIT([Eblockmail Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[www.eblockmail.io],[eblockmail])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_HEADERS([src/config/eblockmail-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -19,9 +19,9 @@ BITCOIN_TX_NAME=eblockmail-tx
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef BIT_CONFIG_H])
-AH_TOP([#define BIT_CONFIG_H])
-AH_BOTTOM([#endif //BIT_CONFIG_H])
+AH_TOP([#ifndef CATO_CONFIG_H])
+AH_TOP([#define CATO_CONFIG_H])
+AH_BOTTOM([#endif //CATO_CONFIG_H])
 
 dnl faketime breaks configure and is only needed for make. Disable it here.
 unset FAKETIME

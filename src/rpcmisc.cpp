@@ -66,17 +66,17 @@ Value getinfo(const Array& params, bool fHelp)
             "  \"difficulty\": xxxxxx,       (numeric) the current difficulty\n"
             "  \"testnet\": true|false,      (boolean) if the server is using testnet or not\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zBITsupply\" :\n"
+            "  \"zCATOsupply\" :\n"
             "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zBIT denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zBIT denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zBIT denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zBIT denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zBIT denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zBIT denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zBIT denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zBIT denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zBIT denominations\n"
+            "     \"1\" : n,            (numeric) supply of 1 zCATO denomination\n"
+            "     \"5\" : n,            (numeric) supply of 5 zCATO denomination\n"
+            "     \"10\" : n,           (numeric) supply of 10 zCATO denomination\n"
+            "     \"50\" : n,           (numeric) supply of 50 zCATO denomination\n"
+            "     \"100\" : n,          (numeric) supply of 100 zCATO denomination\n"
+            "     \"500\" : n,          (numeric) supply of 500 zCATO denomination\n"
+            "     \"1000\" : n,         (numeric) supply of 1000 zCATO denomination\n"
+            "     \"5000\" : n,         (numeric) supply of 5000 zCATO denomination\n"
+            "     \"total\" : n,        (numeric) The total supply of all zCATO denominations\n"
             "  }\n"
             "  \"keypoololdest\": xxxxxx,    (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
             "  \"keypoolsize\": xxxx,        (numeric) how many new keys are pre-generated\n"
@@ -85,6 +85,9 @@ Value getinfo(const Array& params, bool fHelp)
             "  \"relayfee\": x.xxxx,         (numeric) minimum relay fee for non-free transactions in eblockmail/kb\n"
             "  \"staking status\": true|false,  (boolean) if the wallet is staking or not\n"
             "  \"errors\": \"...\"           (string) any error messages\n"
+            "  \"MN collateral\": xxxx,      (numeric) current required collateral to start a new masternode\n"
+            "  \"MN reward\": xxxx,          (numeric) current Masternode reward\n"
+            "  \"Staking reward\": xxxx,       (numeric) current Proof of Stake reward\n"
             "}\n"
             "\nExamples:\n" +
             HelpExampleCli("getinfo", "") + HelpExampleRpc("getinfo", ""));
@@ -109,12 +112,12 @@ Value getinfo(const Array& params, bool fHelp)
     obj.push_back(Pair("difficulty", (double)GetDifficulty()));
     obj.push_back(Pair("testnet", Params().TestnetToBeDeprecatedFieldRPC()));
     obj.push_back(Pair("moneysupply",ValueFromAmount(chainActive.Tip()->nMoneySupply)));
-    Object zbitObj;
+    Object zeblockmailObj;
     for (auto denom : libzerocoin::zerocoinDenomList) {
-        zbitObj.push_back(Pair(to_string(denom), ValueFromAmount(chainActive.Tip()->mapZerocoinSupply.at(denom) * (denom*COIN))));
+        zeblockmailObj.push_back(Pair(to_string(denom), ValueFromAmount(chainActive.Tip()->mapZerocoinSupply.at(denom) * (denom*COIN))));
     }
-    zbitObj.emplace_back(Pair("total", ValueFromAmount(chainActive.Tip()->GetZerocoinSupply())));
-    obj.emplace_back(Pair("zBITsupply", zbitObj));
+    zeblockmailObj.emplace_back(Pair("total", ValueFromAmount(chainActive.Tip()->GetZerocoinSupply())));
+    obj.emplace_back(Pair("zCATOsupply", zeblockmailObj));
     
 #ifdef ENABLE_WALLET
     if (pwalletMain) {
@@ -133,6 +136,57 @@ Value getinfo(const Array& params, bool fHelp)
         nStaking = true;
     obj.push_back(Pair("staking status", (nStaking ? "Staking Active" : "Staking Not Active")));
     obj.push_back(Pair("errors", GetWarnings("statusbar")));
+        obj.push_back(Pair("MN collateral", (int)GetSporkValue(SPORK_17_CURRENT_MN_COLLATERAL)));
+	double blk_reward = 0;
+	int collat = GetSporkValue(SPORK_17_CURRENT_MN_COLLATERAL);
+	if (collat == 2750) {
+		blk_reward = 7.36;
+	}
+	else if (collat == 2950) {
+		blk_reward = 8.05;
+	}
+        else if (collat == 3150) {
+                blk_reward = 8.45;
+        }
+        else if (collat == 3350) {
+                blk_reward = 8.88;
+        }
+        else if (collat == 3600) {
+                blk_reward = 9.32;
+        }
+        else if (collat == 3850) {
+                blk_reward = 9.78;
+        }
+        else if (collat == 4150) {
+                blk_reward = 10.27;
+        }
+        else if (collat == 4400) {
+                blk_reward = 10.79;
+        }
+        else if (collat == 4750) {
+                blk_reward = 11.33;
+        }
+        else if (collat == 5050) {
+                blk_reward = 11.89;
+        }
+        else if (collat == 5400) {
+                blk_reward = 12.49;
+        }
+        else if (collat == 5800) {
+                blk_reward = 13.11;
+        }
+        else if (collat == 6200) {
+                blk_reward = 13.77;
+        }
+        else if (collat == 6600) {
+                blk_reward = 14.46;
+        }
+        else if (collat == 7100) {
+                blk_reward = 15.18;
+        }
+        obj.push_back(Pair("MN reward", (double)blk_reward*.7));
+        obj.push_back(Pair("Staking reward", (double)blk_reward*.3));
+
     return obj;
 }
 

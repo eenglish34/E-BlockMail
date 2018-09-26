@@ -100,7 +100,7 @@ public:
 };
 
 //
-// The Masternode Class. For managing the Obfuscation process. It contains the input of the 210000 BIT, signature to prove
+// The Masternode Class. For managing the Obfuscation process. It contains the input of the 10000 CATO, signature to prove
 // it's the one who own that ip address and code for calculating the payment election.
 //
 class CMasternode
@@ -142,6 +142,7 @@ public:
     int nScanningErrorCount;
     int nLastScanningErrorBlockHeight;
     CMasternodePing lastPing;
+    //int tier;
 
     int64_t nLastDsee;  // temporary, do not save. Remove after migration to v12
     int64_t nLastDseep; // temporary, do not save. Remove after migration to v12
@@ -174,6 +175,7 @@ public:
         swap(first.nLastDsq, second.nLastDsq);
         swap(first.nScanningErrorCount, second.nScanningErrorCount);
         swap(first.nLastScanningErrorBlockHeight, second.nLastScanningErrorBlockHeight);
+	//swap(first.tier, second.tier);
     }
 
     CMasternode& operator=(CMasternode from)
@@ -215,6 +217,7 @@ public:
         READWRITE(nLastDsq);
         READWRITE(nScanningErrorCount);
         READWRITE(nLastScanningErrorBlockHeight);
+	//READWRITE(tier);
     }
 
     int64_t SecondsSincePayment();
@@ -282,6 +285,9 @@ public:
 
     int64_t GetLastPaid();
     bool IsValidNetAddr();
+   // void UpdateTier(int newTier) {
+     //   tier = newTier;
+    //}
 };
 
 

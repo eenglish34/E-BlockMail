@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ $# -gt 1 ]; then
-    cd "$2"
+    cd ~/wrk/cato2
 fi
 if [ $# -gt 0 ]; then
     FILE="$1"

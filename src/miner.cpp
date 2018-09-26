@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Eblockmail developers
+// Copyright (c) 2018 The Eblockmail developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -313,7 +313,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             if (!view.HaveInputs(tx))
                 continue;
 
-            // double check that there are no double spent zBit spends in this block or tx
+            // double check that there are no double spent zEblockmail spends in this block or tx
             if (tx.IsZerocoinSpend()) {
                 int nHeightTx = 0;
                 if (IsTransactionInChain(tx.GetHash(), nHeightTx))
@@ -334,7 +334,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
                         vTxSerials.emplace_back(spend.getCoinSerialNumber());
                     }
                 }
-                //This zBit serial has already been included in the block, do not add this tx.
+                //This zEblockmail serial has already been included in the block, do not add this tx.
                 if (fDoubleSerial)
                     continue;
             }
@@ -530,23 +530,32 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
     while (fGenerateBitcoins || fProofOfStake) {
         if (fProofOfStake) {
+			
             if (chainActive.Tip()->nHeight < Params().LAST_POW_BLOCK()) {
+				//LogPrintf("Miner: ProofOfStake is true, but lower than last POW block\n");
                 MilliSleep(5000);
                 continue;
             }
 
-            while (chainActive.Tip()->nTime < 1471482000 || vNodes.empty() || pwallet->IsLocked() || !fMintableCoins || nReserveBalance >= pwallet->GetBalance() || !masternodeSync.IsSynced()) {
+            while (chainActive.Tip()->nTime < 1471482000 || vNodes.empty() || pwallet->IsLocked() || !fMintableCoins || nReserveBalance >= pwallet->GetBalance() || !masternodeSync.IsSynced() || pwallet->GetBalance() < 10 * COIN) {
                 nLastCoinStakeSearchInterval = 0;
                 MilliSleep(5000);
                 if (!fGenerateBitcoins && !fProofOfStake)
                     continue;
             }
 
+			if(fProofOfStake && pwallet->GetBalance() < 10 * COIN) {
+				//LogPrintf("PoS and Balance is too low %d\n", pwallet->GetBalance());
+				MilliSleep(60000);
+				continue;
+			}
+
             if (mapHashedBlocks.count(chainActive.Tip()->nHeight)) //search our map of hashed blocks, see if bestblock has been hashed yet
             {
                 if (GetTime() - mapHashedBlocks[chainActive.Tip()->nHeight] < max(pwallet->nHashInterval, (unsigned int)1)) // wait half of the nHashDrift with max wait of 3 minutes
                 {
-                    MilliSleep(5000);
+   				   //LogPrintf("Miner: ProofOfStake is true, but hash interval is less than expected\n");
+                   MilliSleep(5000);
                     continue;
                 }
             }
@@ -561,7 +570,18 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         CBlockIndex* pindexPrev = chainActive.Tip();
         if (!pindexPrev)
             continue;
+    //BOOST_FOREACH(PAIRTYPE(const std::string, int) & tier, masternodeTiers) {
+      //        LogPrintf("PAYEE: %s RANK: %d\n",tier.first, tier.second);
+        //      LogPrintf("hiiii\n");
+       //}
+//const std::string a = "CZTTdc8k2993pGsJaTM4bLu6fAkJMsK61z";
+//addpairtomap(a);
+//const std::string b = "CVfgGFRsWywjv1CE6iVwZ3XTADiPGqQCVb";
+//addpairtomap(b);
+//masternodeTiers.insert ( std::pair<std::string,int>(b,nHeight) );
 
+
+   	    LogPrintf("Miner: Create new block!\n");
         unique_ptr<CBlockTemplate> pblocktemplate(CreateNewBlockWithKey(reservekey, pwallet, fProofOfStake));
         if (!pblocktemplate.get())
             continue;
@@ -570,7 +590,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         IncrementExtraNonce(pblock, pindexPrev, nExtraNonce);
 
         //Stake miner main
-        if (fProofOfStake) {
+        if (fProofOfStake && pwallet->GetBalance() >= 10 * COIN) {
             LogPrintf("CPUMiner : proof-of-stake block found %s \n", pblock->GetHash().ToString().c_str());
 
             if (!pblock->SignBlock(*pwallet)) {

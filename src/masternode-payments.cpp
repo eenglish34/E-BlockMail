@@ -197,6 +197,8 @@ bool IsBlockValueValid(const CBlock& block, CAmount nExpectedValue, CAmount nMin
         //super blocks will always be on these blocks, max 100 per budgeting
         if (nHeight % GetBudgetPaymentCycleBlocks() < 100) {
             return true;
+	} else if (nMinted < 16 * COIN){
+	     return true;
         } else {
             if (nMinted > nExpectedValue) {
                 return false;

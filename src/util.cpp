@@ -426,11 +426,11 @@ boost::filesystem::path GetDefaultDataDir()
     namespace fs = boost::filesystem;
 // Windows < Vista: C:\Documents and Settings\Username\Application Data\Eblockmail
 // Windows >= Vista: C:\Users\Username\AppData\Roaming\Eblockmail
-// Mac: ~/Library/Application Support/Eblockmail
+// Mac: ~/Library/Application Support/Eblockmail2
 // Unix: ~/.eblockmail
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Eblockmail";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Eblockmail2";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -442,10 +442,10 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "Eblockmail";
+    return pathRet / "Eblockmail2";
 #else
     // Unix
-    return pathRet / ".eblockmail";
+    return pathRet / ".eblockmail2";
 #endif
 #endif
 }
@@ -492,7 +492,7 @@ void ClearDatadirCache()
 
 boost::filesystem::path GetConfigFile()
 {
-    boost::filesystem::path pathConfigFile(GetArg("-conf", "eblockmail.conf"));
+    boost::filesystem::path pathConfigFile(GetArg("-conf", "eblockmail2.conf"));
     if (!pathConfigFile.is_complete())
         pathConfigFile = GetDataDir(false) / pathConfigFile;
 
@@ -511,7 +511,7 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty eblockmail.conf if it does not exist
+        // Create empty eblockmail2.conf if it does not exist
         FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
         if (configFile != NULL)
             fclose(configFile);
@@ -522,7 +522,7 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override eblockmail.conf
+        // Don't overwrite existing settings so command line settings override eblockmail2.conf
         string strKey = string("-") + it->string_key;
         string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);

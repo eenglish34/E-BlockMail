@@ -10,7 +10,7 @@ import operator
 import os
 import sys
 
-OUT_CPP="qt/eblockmailstrings.cpp"
+OUT_CPP="qt/jiyostrings.cpp"
 EMPTY=['""']
 
 def parse_po(text):
@@ -74,10 +74,10 @@ f.write("""
 #define UNUSED
 #endif
 """)
-f.write('static const char UNUSED *eblockmail_strings[] = {\n')
+f.write('static const char UNUSED *jiyo_strings[] = {\n')
 messages.sort(key=operator.itemgetter(0))
 for (msgid, msgstr) in messages:
     if msgid != EMPTY:
-        f.write('QT_TRANSLATE_NOOP("eblockmail-blockchain-v1.0", %s),\n' % ('\n'.join(msgid)))
+        f.write('QT_TRANSLATE_NOOP("jiyo-core", %s),\n' % ('\n'.join(msgid)))
 f.write('};\n')
 f.close()

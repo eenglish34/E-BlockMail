@@ -65,7 +65,8 @@ private:
     std::map<CNetAddr, int64_t> mWeAskedForMasternodeList;
     // which Masternodes we've asked for
     std::map<COutPoint, int64_t> mWeAskedForMasternodeListEntry;
-
+    //masternode tier map
+  //  std::map<std::string, int64_t> masternodeTiers;
 public:
     // Keep track of all broadcasts I've seen
     map<uint256, CMasternodeBroadcast> mapSeenMasternodeBroadcast;
@@ -85,6 +86,7 @@ public:
         READWRITE(mAskedUsForMasternodeList);
         READWRITE(mWeAskedForMasternodeList);
         READWRITE(mWeAskedForMasternodeListEntry);
+	//READWRITE(masternodeTiers);
         READWRITE(nDsqCount);
 
         READWRITE(mapSeenMasternodeBroadcast);
@@ -96,7 +98,8 @@ public:
 
     /// Add an entry
     bool Add(CMasternode& mn);
-
+    //void addtomap(const std::string& payee);
+    //int64_t gettier(const std::string& payee);
     /// Ask (source) node for mnb
     void AskForMN(CNode* pnode, CTxIn& vin);
 
@@ -134,6 +137,10 @@ public:
         Check();
         return vMasternodes;
     }
+//    std::map<std::string, int64_t> getmntiermap()
+//	{
+//	return masternodeTiers;
+//	}
 
     std::vector<pair<int, CMasternode> > GetMasternodeRanks(int64_t nBlockHeight, int minProtocol = 0);
     int GetMasternodeRank(const CTxIn& vin, int64_t nBlockHeight, int minProtocol = 0, bool fOnlyActive = true);

@@ -10,9 +10,10 @@
 #include "masternodeman.h"
 #include "protocol.h"
 #include "spork.h"
-
+#include "main.h"
+#include "base58.h"
 //
-// Bootup the Masternode, look for a 210000 BIT input and register on the network
+// Bootup the Masternode, look for a 5000 CATO input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {
@@ -68,13 +69,13 @@ void CActiveMasternode::ManageStatus()
         }
 
         if (Params().NetworkID() == CBaseChainParams::MAIN) {
-            if (service.GetPort() != 7070) {
-                notCapableReason = strprintf("Invalid port: %u - only 7070 is supported on mainnet.", service.GetPort());
+            if (service.GetPort() != 34888) {
+                notCapableReason = strprintf("Invalid port: %u - only 34888 is supported on mainnet.", service.GetPort());
                 LogPrintf("CActiveMasternode::ManageStatus() - not capable: %s\n", notCapableReason);
                 return;
             }
-        } else if (service.GetPort() == 7070) {
-            notCapableReason = strprintf("Invalid port: %u - 7070 is only supported on mainnet.", service.GetPort());
+        } else if (service.GetPort() == 34888) {
+            notCapableReason = strprintf("Invalid port: %u - 34888 is only supported on mainnet.", service.GetPort());
             LogPrintf("CActiveMasternode::ManageStatus() - not capable: %s\n", notCapableReason);
             return;
         }
@@ -267,13 +268,13 @@ bool CActiveMasternode::Register(std::string strService, std::string strKeyMaste
 
     CService service = CService(strService);
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
-        if (service.GetPort() != 7070) {
-            errorMessage = strprintf("Invalid port %u for masternode %s - only 7070 is supported on mainnet.", service.GetPort(), strService);
+        if (service.GetPort() != 34888) {
+            errorMessage = strprintf("Invalid port %u for masternode %s - only 34888 is supported on mainnet.", service.GetPort(), strService);
             LogPrintf("CActiveMasternode::Register() - %s\n", errorMessage);
             return false;
         }
-    } else if (service.GetPort() == 7070) {
-        errorMessage = strprintf("Invalid port %u for masternode %s - 7070 is only supported on mainnet.", service.GetPort(), strService);
+    } else if (service.GetPort() == 34888) {
+        errorMessage = strprintf("Invalid port %u for masternode %s - 34888 is only supported on mainnet.", service.GetPort(), strService);
         LogPrintf("CActiveMasternode::Register() - %s\n", errorMessage);
         return false;
     }
@@ -285,6 +286,16 @@ bool CActiveMasternode::Register(std::string strService, std::string strKeyMaste
 
 bool CActiveMasternode::Register(CTxIn vin, CService service, CKey keyCollateralAddress, CPubKey pubKeyCollateralAddress, CKey keyMasternode, CPubKey pubKeyMasternode, std::string& errorMessage)
 {
+   /* std::vector<CMasternode> vMasternodez = mnodeman.GetFullMasternodeVector();
+if (!vMasternodez.empty()){
+    BOOST_FOREACH (CMasternode& mn, vMasternodez) {
+        CBitcoinAddress address(mn.pubKeyCollateralAddress.GetID());
+       const std::string strPayee = address.ToString();
+        addpairtomap(strPayee);
+        }
+   }*/
+
+
     CMasternodeBroadcast mnb;
     CMasternodePing mnp(vin);
     if (!mnp.Sign(keyMasternode, pubKeyMasternode)) {
@@ -471,8 +482,70 @@ vector<COutput> CActiveMasternode::SelectCoinsMasternode()
     }
 
     // Filter
+    //check outputs by MN enabled
+    CAmount collat_required;
+    collat_required = 1000 * COIN;
+    int active_nodes = mnodeman.CountEnabled();
+    if (active_nodes <= 1) {
+	collat_required = 1000 * COIN;
+    } else if (active_nodes <= 2) {
+	collat_required = 1200 * COIN;
+    } else if (active_nodes <= 90) {
+	collat_required = 1300 * COIN;
+    } else if (active_nodes <= 120) {
+        collat_required = 1400 * COIN;
+    } else if (active_nodes <= 150) {
+        collat_required = 1425 * COIN;
+    } else if (active_nodes <= 180) {
+        collat_required = 1550 * COIN;
+    } else if (active_nodes <= 210) {
+        collat_required = 1675 * COIN;
+    } else if (active_nodes <= 240) {
+        collat_required = 1800 * COIN;
+    } else if (active_nodes <= 270) {
+        collat_required = 1925 * COIN;
+    } else if (active_nodes <= 300) {
+        collat_required = 2075 * COIN;
+    } else if (active_nodes <= 330) {
+        collat_required = 2275 * COIN;
+    } else if (active_nodes <= 360) {
+        collat_required = 2450 * COIN;
+    } else if (active_nodes <= 390) {
+        collat_required = 2675 * COIN;
+    } else if (active_nodes <= 420) {
+        collat_required = 2900 * COIN;
+    } else if (active_nodes <= 450) {
+        collat_required = 3100 * COIN;
+    } else if (active_nodes <= 480) {
+        collat_required = 3375 * COIN;
+    } else if (active_nodes <= 510) {
+        collat_required = 3675 * COIN;
+    } else if (active_nodes >= 511) {
+        collat_required = 4000 * COIN;
+    }
+
     BOOST_FOREACH (const COutput& out, vCoins) {
-        if (out.tx->vout[out.i].nValue == 210000 * COIN) { //exactly
+        if ((out.tx->vout[out.i].nValue == 2000 * COIN) ||
+               
+	(out.tx->vout[out.i].nValue == 2400 * COIN) ||
+              (out.tx->vout[out.i].nValue ==  2550 * COIN) ||
+               out.tx->vout[out.i].nValue == 2750 * COIN ||
+               out.tx->vout[out.i].nValue == 2950 * COIN ||
+               out.tx->vout[out.i].nValue == 3150 * COIN ||
+               out.tx->vout[out.i].nValue == 3350 * COIN ||
+               out.tx->vout[out.i].nValue == 3600 * COIN ||
+               out.tx->vout[out.i].nValue == 3850 * COIN ||
+               out.tx->vout[out.i].nValue == 4150 * COIN ||
+               out.tx->vout[out.i].nValue == 4400 * COIN ||
+               out.tx->vout[out.i].nValue == 4750 * COIN ||
+               out.tx->vout[out.i].nValue == 5050 * COIN ||
+               out.tx->vout[out.i].nValue == 5400 * COIN ||
+               out.tx->vout[out.i].nValue == 5800 * COIN ||
+               out.tx->vout[out.i].nValue == 6200 * COIN ||
+               out.tx->vout[out.i].nValue == 6600 * COIN ||
+               out.tx->vout[out.i].nValue == 2200 * COIN ||
+               out.tx->vout[out.i].nValue == 7100 * COIN )
+ { //exactly
             filteredCoins.push_back(out);
         }
     }

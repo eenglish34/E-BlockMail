@@ -91,12 +91,12 @@ Object blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool txDe
 
     result.push_back(Pair("moneysupply",ValueFromAmount(blockindex->nMoneySupply)));
 
-    Object zbitObj;
+    Object zeblockmailObj;
     for (auto denom : libzerocoin::zerocoinDenomList) {
-        zbitObj.push_back(Pair(to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
+        zeblockmailObj.push_back(Pair(to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
     }
-    zbitObj.emplace_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
-    result.emplace_back(Pair("zBITsupply", zbitObj));
+    zeblockmailObj.emplace_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
+    result.emplace_back(Pair("zCATOsupply", zeblockmailObj));
 
     return result;
 }
@@ -279,17 +279,17 @@ Value getblock(const Array& params, bool fHelp)
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zBITsupply\" :\n"
+            "  \"zCATOsupply\" :\n"
             "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zBIT denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zBIT denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zBIT denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zBIT denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zBIT denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zBIT denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zBIT denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zBIT denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zBIT denominations\n"
+            "     \"1\" : n,            (numeric) supply of 1 zCATO denomination\n"
+            "     \"5\" : n,            (numeric) supply of 5 zCATO denomination\n"
+            "     \"10\" : n,           (numeric) supply of 10 zCATO denomination\n"
+            "     \"50\" : n,           (numeric) supply of 50 zCATO denomination\n"
+            "     \"100\" : n,          (numeric) supply of 100 zCATO denomination\n"
+            "     \"500\" : n,          (numeric) supply of 500 zCATO denomination\n"
+            "     \"1000\" : n,         (numeric) supply of 1000 zCATO denomination\n"
+            "     \"5000\" : n,         (numeric) supply of 5000 zCATO denomination\n"
+            "     \"total\" : n,        (numeric) The total supply of all zCATO denominations\n"
             "  }\n"
             "}\n"
             "\nResult (for verbose=false):\n"

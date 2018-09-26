@@ -2,8 +2,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITMONEY_CSPORKDB_H
-#define BITMONEY_CSPORKDB_H
+#ifndef CATO_CSPORKDB_H
+#define CATO_CSPORKDB_H
 
 #include <boost/filesystem/path.hpp>
 #include "leveldbwrapper.h"
@@ -25,4 +25,4 @@ public:
 };
 
 
-#endif //BITMONEY_CSPORKDB_H
+#endif //CATO_CSPORKDB_H

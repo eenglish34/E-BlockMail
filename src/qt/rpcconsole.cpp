@@ -434,11 +434,11 @@ void RPCConsole::walletReindex()
 /** Restart wallet with "-resync" */
 void RPCConsole::walletResync()
 {
-    QString resyncWarning = tr("This will delete your local Bit-Money blockchain folders and the Bit-Money wallet will synchronize the complete Bit-Money Blockchain from scratch.<br /><br />");
+    QString resyncWarning = tr("This will delete your local blockchain folders and the wallet will synchronize the complete Blockchain from scratch.<br /><br />");
         resyncWarning +=   tr("This needs quite some time and downloads a lot of data.<br /><br />");
-        resyncWarning +=   tr("Your transactions and funds will be visible again after the complete Bit-Money blockchain download has completed.<br /><br />");
-        resyncWarning +=   tr("Do you want to continue to resync Bit-Money Blockchain?.<br />");
-    QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm resync Bit-Money Blockchain"),
+        resyncWarning +=   tr("Your transactions and funds will be visible again after the download has completed.<br /><br />");
+        resyncWarning +=   tr("Do you want to continue?.<br />");
+    QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm resync Blockchain"),
         resyncWarning,
         QMessageBox::Yes | QMessageBox::Cancel,
         QMessageBox::Cancel);
@@ -500,7 +500,7 @@ void RPCConsole::clear()
         "td.cmd-error { color: red; } "
         "b { color: #006060; } ");
 
-    message(CMD_REPLY, (tr("Welcome to the Bit-Money Blockchain v1.0 RPC console.") + "<br>" +
+    message(CMD_REPLY, (tr("Welcome to the Eblockmail RPC console.") + "<br>" +
                            tr("Use up and down arrows to navigate history, and <b>Ctrl-L</b> to clear screen.") + "<br>" +
                            tr("Type <b>help</b> for an overview of available commands.")),
         true);
@@ -741,7 +741,7 @@ void RPCConsole::peerLayoutChanged()
         // detail node dissapeared from table (node disconnected)
         fUnselect = true;
         cachedNodeid = -1;
-        ui->peerHeading->setText(tr("Select a Bit-Money peer to view detailed information."));
+        ui->peerHeading->setText(tr("Select a peer to view detailed information."));
     } else {
         if (detailNodeRow != selectedRow) {
             // detail node moved position

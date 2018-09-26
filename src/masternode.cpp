@@ -10,7 +10,9 @@
 #include "sync.h"
 #include "util.h"
 #include <boost/lexical_cast.hpp>
-
+#include "base58.h"
+#include "main.h"
+#include "spork.h"
 // keep track of the scanning errors I've seen
 map<uint256, int> mapSeenMasternodeScanningErrors;
 // cache block hashes as we calculate them
@@ -72,6 +74,7 @@ CMasternode::CMasternode()
     cacheInputAgeBlock = 0;
     unitTest = false;
     allowFreeTx = true;
+    //tier = 0;
     nActiveState = MASTERNODE_ENABLED,
     protocolVersion = PROTOCOL_VERSION;
     nLastDsq = 0;
@@ -97,6 +100,7 @@ CMasternode::CMasternode(const CMasternode& other)
     cacheInputAgeBlock = other.cacheInputAgeBlock;
     unitTest = other.unitTest;
     allowFreeTx = other.allowFreeTx;
+    //tier = other.tier;
     nActiveState = MASTERNODE_ENABLED,
     protocolVersion = other.protocolVersion;
     nLastDsq = other.nLastDsq;
@@ -121,6 +125,7 @@ CMasternode::CMasternode(const CMasternodeBroadcast& mnb)
     cacheInputAge = 0;
     cacheInputAgeBlock = 0;
     unitTest = false;
+    //tier = 0;
     allowFreeTx = true;
     nActiveState = MASTERNODE_ENABLED,
     protocolVersion = mnb.protocolVersion;
@@ -209,9 +214,164 @@ void CMasternode::Check(bool forceCheck)
     }
 
     if (!unitTest) {
+//runs every time you make a new MN
+//if (tier == 0){
+//UpdateTier(mnodeman.CountEnabled()+1);
+//}
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
-        CTxOut vout = CTxOut(9999.99 * COIN, obfuScationPool.collateralPubKey);
+   CAmount collat_required = 39999.99 * COIN;
+//CBitcoinAddress address(pubKeyCollateralAddress.GetID());
+  //      std::string strPayee = address.ToString();
+//if (tier <= 0)
+//{
+//collat_required = 59999 * COIN;
+/*
+ if (chainActive.Height() > SPORK_18_LAST_2000_COLLAT_BLOCK) {
+    collat_required = 1999.99 * COIN;
+} else if (chainActive.Height() > SPORK_18_LAST_2000_COLLAT_BLOCK && ) {
+    collat_required = 2099.99 * COIN;
+} else if (tier <= 61) {
+	collat_required = 2399.99 * COIN;
+} else if (tier <= 91) {
+        collat_required = 2549.99 * COIN;
+} else if (tier <= 121) {
+        collat_required = 2749.99 * COIN;
+} else if (tier <= 151) {
+        collat_required = 2949.99 * COIN;
+} else if (tier <= 181) {
+        collat_required =  3149.99* COIN;
+
+} else if (tier <= 211) {
+        collat_required = 3349.99 * COIN;
+
+} else if (tier <= 241) {
+        collat_required = 3599.99 * COIN;
+} else if (tier <= 271) {
+        collat_required = 3849.99 * COIN;
+} else if (tier <= 301) {
+        collat_required = 4149.99 * COIN;
+} else if (tier <= 331) {
+        collat_required = 4399.99 * COIN;
+} else if (tier <= 361) {
+        collat_required = 4749.99 * COIN;
+} else if (tier <= 391) {
+        collat_required = 5049.99 * COIN;
+
+} else if (tier <= 421) {
+        collat_required = 5399.99 * COIN;
+
+} else if (tier <= 451) {
+        collat_required = 5799.99 * COIN;
+} else if (tier <= 481) {
+        collat_required = 6199.99 * COIN;
+
+} else if (tier <= 511) {
+        collat_required = 6599.99 * COIN;
+} else if (tier > 511) {
+        collat_required = 7099.99 * COIN;
+
+}
+
+*/
+
+
+
+
+
+
+  /*  int active_nodes = mnodeman.CountEnabled();
+    if (active_nodes <= 30) {
+	collat_required = 999.99 * COIN;
+    } else if (active_nodes <= 60) {
+	collat_required = 1199.99 * COIN;
+    } else if (active_nodes <= 90) {
+	collat_required = 1299.99 * COIN;
+    } else if (active_nodes <= 120) {
+        collat_required = 1399.99 * COIN;
+    } else if (active_nodes <= 150) {
+        collat_required = 1424.99 * COIN;
+    } else if (active_nodes <= 180) {
+        collat_required = 1549.99 * COIN;
+    } else if (active_nodes <= 210) {
+        collat_required = 1674.99 * COIN;
+    } else if (active_nodes <= 240) {
+        collat_required = 1799.99 * COIN;
+    } else if (active_nodes <= 270) {
+        collat_required = 1924.99 * COIN;
+    } else if (active_nodes <= 300) {
+        collat_required = 2074.99 * COIN;
+    } else if (active_nodes <= 330) {
+        collat_required = 2274.99 * COIN;
+    } else if (active_nodes <= 360) {
+        collat_required = 2449.99 * COIN;
+    } else if (active_nodes <= 390) {
+        collat_required = 2674.99 * COIN;
+    } else if (active_nodes <= 420) {
+        collat_required = 2899.99 * COIN;
+    } else if (active_nodes <= 450) {
+        collat_required = 3099.99 * COIN;
+    } else if (active_nodes <= 480) {
+        collat_required = 3374.99 * COIN;
+    } else if (active_nodes <= 510) {
+        collat_required = 3674.99 * COIN;
+    } else if (active_nodes >= 511) {
+        collat_required = 3999.99 * COIN;
+    }*/
+CTransaction wtx2;
+uint256 hashBlock2;
+if(GetTransaction(vin.prevout.hash, wtx2, hashBlock2, true)) {
+//hashblock2 now has the block hash
+BlockMap::iterator iter = mapBlockIndex.find(hashBlock2);
+if (iter != mapBlockIndex.end()) {
+int txnheight = iter->second->nHeight;
+//block height of txn
+if (txnheight <= GetSporkValue(SPORK_18_LAST_2000_COLLAT_BLOCK)){
+collat_required = 1999.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_36_LAST_2200_COLLAT_BLOCK)) {
+collat_required = 2199.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_19_LAST_2400_COLLAT_BLOCK)){
+collat_required = 2399.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_20_LAST_2550_COLLAT_BLOCK)){
+collat_required = 2549.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_21_LAST_2750_COLLAT_BLOCK)){
+collat_required = 2749.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_22_LAST_2950_COLLAT_BLOCK)){
+collat_required = 2949.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_23_LAST_3150_COLLAT_BLOCK)){
+collat_required = 3149.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_24_LAST_3350_COLLAT_BLOCK)){
+collat_required = 3349.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_25_LAST_3600_COLLAT_BLOCK)){
+collat_required = 3599.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_26_LAST_3850_COLLAT_BLOCK)){
+collat_required = 3849.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_27_LAST_4150_COLLAT_BLOCK)){
+collat_required = 4149.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_28_LAST_4400_COLLAT_BLOCK)){
+collat_required = 4399.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_29_LAST_4750_COLLAT_BLOCK)){
+collat_required = 4749.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_30_LAST_5050_COLLAT_BLOCK)){
+collat_required = 5049.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_31_LAST_5400_COLLAT_BLOCK)){
+collat_required = 5399.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_32_LAST_5800_COLLAT_BLOCK)){
+collat_required = 5799.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_33_LAST_6200_COLLAT_BLOCK)){
+collat_required = 6199.99 * COIN;
+} else if (txnheight <= GetSporkValue(SPORK_34_LAST_6600_COLLAT_BLOCK)){
+collat_required = 6599.99 * COIN;
+} else {
+collat_required = 7099.99 * COIN;
+}
+} else {
+collat_required = 7099.99 * COIN;
+}
+} else {
+collat_required = 7099.99 * COIN;
+}
+        CTxOut vout = CTxOut(collat_required, obfuScationPool.collateralPubKey);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
 
@@ -225,6 +385,9 @@ void CMasternode::Check(bool forceCheck)
             }
         }
     }
+//CBitcoinAddress address(pubKeyCollateralAddress.GetID());
+  //      std::string strPayee = address.ToString();
+//if (gettier(strPayee) < 30 )
 
     activeState = MASTERNODE_ENABLED; // OK
 }
@@ -338,6 +501,7 @@ CMasternodeBroadcast::CMasternodeBroadcast()
     cacheInputAge = 0;
     cacheInputAgeBlock = 0;
     unitTest = false;
+    //tier = 0;
     allowFreeTx = true;
     protocolVersion = PROTOCOL_VERSION;
     nLastDsq = 0;
@@ -358,6 +522,7 @@ CMasternodeBroadcast::CMasternodeBroadcast(CService newAddr, CTxIn newVin, CPubK
     cacheInputAge = 0;
     cacheInputAgeBlock = 0;
     unitTest = false;
+    //tier = 0;
     allowFreeTx = true;
     protocolVersion = protocolVersionIn;
     nLastDsq = 0;
@@ -379,6 +544,7 @@ CMasternodeBroadcast::CMasternodeBroadcast(const CMasternode& mn)
     cacheInputAgeBlock = mn.cacheInputAgeBlock;
     unitTest = mn.unitTest;
     allowFreeTx = mn.allowFreeTx;
+    //tier = mn.tier;
     protocolVersion = mn.protocolVersion;
     nLastDsq = mn.nLastDsq;
     nScanningErrorCount = mn.nScanningErrorCount;
@@ -515,8 +681,8 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     }
 
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
-        if (addr.GetPort() != 7070) return false;
-    } else if (addr.GetPort() == 7070)
+        if (addr.GetPort() != 34888) return false;
+    } else if (addr.GetPort() == 34888)
         return false;
 
     //search existing Masternode list, this is where we update existing Masternodes with new mnb broadcasts
@@ -571,7 +737,48 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
 
     CValidationState state;
     CMutableTransaction tx = CMutableTransaction();
-    CTxOut vout = CTxOut(9999.99 * COIN, obfuScationPool.collateralPubKey);
+    //check outputs by MN enabled
+    CAmount collat_required;
+    collat_required = 999.99 * COIN;
+    int active_nodes = mnodeman.CountEnabled();
+    if (active_nodes <= 30) {
+	collat_required = 999.99 * COIN;
+    } else if (active_nodes <= 60) {
+	collat_required = 1199.99 * COIN;
+    } else if (active_nodes <= 90) {
+	collat_required = 1299.99 * COIN;
+    } else if (active_nodes <= 120) {
+        collat_required = 1399.99 * COIN;
+    } else if (active_nodes <= 150) {
+        collat_required = 1424.99 * COIN;
+    } else if (active_nodes <= 180) {
+        collat_required = 1549.99 * COIN;
+    } else if (active_nodes <= 210) {
+        collat_required = 1674.99 * COIN;
+    } else if (active_nodes <= 240) {
+        collat_required = 1799.99 * COIN;
+    } else if (active_nodes <= 270) {
+        collat_required = 1924.99 * COIN;
+    } else if (active_nodes <= 300) {
+        collat_required = 2074.99 * COIN;
+    } else if (active_nodes <= 330) {
+        collat_required = 2274.99 * COIN;
+    } else if (active_nodes <= 360) {
+        collat_required = 2449.99 * COIN;
+    } else if (active_nodes <= 390) {
+        collat_required = 2674.99 * COIN;
+    } else if (active_nodes <= 420) {
+        collat_required = 2899.99 * COIN;
+    } else if (active_nodes <= 450) {
+        collat_required = 3099.99 * COIN;
+    } else if (active_nodes <= 480) {
+        collat_required = 3374.99 * COIN;
+    } else if (active_nodes <= 510) {
+        collat_required = 3674.99 * COIN;
+    } else if (active_nodes >= 511) {
+        collat_required = 3999.99 * COIN;
+    }
+    CTxOut vout = CTxOut(collat_required, obfuScationPool.collateralPubKey);
     tx.vin.push_back(vin);
     tx.vout.push_back(vout);
 
@@ -602,13 +809,13 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     }
 
     // verify that sig time is legit in past
-    // should be at least not earlier than block when 210000 BIT tx got MASTERNODE_MIN_CONFIRMATIONS
+    // should be at least not earlier than block when 50000 CATO tx got MASTERNODE_MIN_CONFIRMATIONS
     uint256 hashBlock = 0;
     CTransaction tx2;
     GetTransaction(vin.prevout.hash, tx2, hashBlock, true);
     BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
     if (mi != mapBlockIndex.end() && (*mi).second) {
-        CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 210000 BIT tx -> 1 confirmation
+        CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 50000 CATO tx -> 1 confirmation
         CBlockIndex* pConfIndex = chainActive[pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1]; // block where tx got MASTERNODE_MIN_CONFIRMATIONS
         if (pConfIndex->GetBlockTime() > sigTime) {
             LogPrint("masternode","mnb - Bad sigTime %d for Masternode %s (%i conf block is at %d)\n",
