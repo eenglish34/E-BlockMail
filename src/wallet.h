@@ -80,28 +80,28 @@ enum AvailableCoinsType {
     ALL_COINS = 1,
     ONLY_DENOMINATED = 2,
     ONLY_NOT10000IFMN = 3,
-    ONLY_NONDENOMINATED_NOT10000IFMN = 4, // ONLY_NONDENOMINATED and not 10000 CATO at the same time
+    ONLY_NONDENOMINATED_NOT10000IFMN = 4, // ONLY_NONDENOMINATED and not 10000 EBM at the same time
     ONLY_10000 = 5,                        // find masternode outputs including locked ones (use with caution)
     STAKABLE_COINS = 6                          // UTXO's that are valid for staking
 };
 
-// Possible states for zCATO send
+// Possible states for zEBM send
 enum ZerocoinSpendStatus {
-    ZCATO_SPEND_OKAY = 0,                            // No error
-    ZCATO_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
-    ZCATO_WALLET_LOCKED = 2,                         // Wallet was locked
-    ZCATO_COMMIT_FAILED = 3,                         // Commit failed, reset status
-    ZCATO_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
-    ZCATO_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
-    ZCATO_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
-    ZCATO_TRX_CREATE = 7,                            // Everything related to create the transaction
-    ZCATO_TRX_CHANGE = 8,                            // Everything related to transaction change
-    ZCATO_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
-    ZCATO_INVALID_COIN = 10,                         // Selected mint coin is not valid
-    ZCATO_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
-    ZCATO_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
-    ZCATO_BAD_SERIALIZATION = 13,                    // Transaction verification failed
-    ZCATO_SPENT_USED_ZCATO = 14                       // Coin has already been spend
+    ZEBM_SPEND_OKAY = 0,                            // No error
+    ZEBM_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
+    ZEBM_WALLET_LOCKED = 2,                         // Wallet was locked
+    ZEBM_COMMIT_FAILED = 3,                         // Commit failed, reset status
+    ZEBM_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
+    ZEBM_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
+    ZEBM_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
+    ZEBM_TRX_CREATE = 7,                            // Everything related to create the transaction
+    ZEBM_TRX_CHANGE = 8,                            // Everything related to transaction change
+    ZEBM_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
+    ZEBM_INVALID_COIN = 10,                         // Selected mint coin is not valid
+    ZEBM_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
+    ZEBM_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
+    ZEBM_BAD_SERIALIZATION = 13,                    // Transaction verification failed
+    ZEBM_SPENT_USED_ZEBM = 14                       // Coin has already been spend
 };
 
 struct CompactTallyItem {

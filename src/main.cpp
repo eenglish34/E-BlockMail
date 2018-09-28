@@ -2713,7 +2713,7 @@ void ThreadScriptCheck()
     scriptcheckqueue.Thread();
 }
 
-void RecalculateZCATOMinted()
+void RecalculateZEBMMinted()
 {
     CBlockIndex *pindex = chainActive[Params().Zerocoin_AccumulatorStartHeight()];
     int nHeightEnd = chainActive.Height();
@@ -2745,14 +2745,14 @@ void RecalculateZCATOMinted()
     pblocktree->Flush();
 }
 
-void RecalculateZCATOSpent()
+void RecalculateZEBMSpent()
 {
     CBlockIndex* pindex = chainActive[Params().Zerocoin_AccumulatorStartHeight()];
     while (true) {
         if (pindex->nHeight % 1000 == 0)
             LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
 
-        //Rewrite zCATO supply
+        //Rewrite zEBM supply
         CBlock block;
         assert(ReadBlockFromDisk(block, pindex));
 
@@ -2761,13 +2761,13 @@ void RecalculateZCATOSpent()
         //Reset the supply to previous block
         pindex->mapZerocoinSupply = pindex->pprev->mapZerocoinSupply;
 
-        //Add mints to zCATO supply
+        //Add mints to zEBM supply
         for (auto denom : libzerocoin::zerocoinDenomList) {
             long nDenomAdded = count(pindex->vMintDenominationsInBlock.begin(), pindex->vMintDenominationsInBlock.end(), denom);
             pindex->mapZerocoinSupply.at(denom) += nDenomAdded;
         }
 
-        //Remove spends from zCATO supply
+        //Remove spends from zEBM supply
         for (auto denom : listDenomsSpent)
             pindex->mapZerocoinSupply.at(denom)--;
 
@@ -2782,7 +2782,7 @@ void RecalculateZCATOSpent()
     pblocktree->Flush();
 }
 
-bool RecalculateCATOSupply(int nHeightStart)
+bool RecalculateEBMSupply(int nHeightStart)
 {
     if (nHeightStart > chainActive.Height())
         return false;
@@ -3019,9 +3019,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     std::list<libzerocoin::CoinDenomination> listSpends = ZerocoinSpendListFromBlock(block);
 
     if (!fVerifyingBlocks && pindex->nHeight == Params().Zerocoin_StartHeight() + 1) {
-        RecalculateZCATOMinted();
-        RecalculateZCATOSpent();
-        RecalculateCATOSupply(1);
+        RecalculateZEBMMinted();
+        RecalculateZEBMSpent();
+        RecalculateEBMSupply(1);
     }
 
     // Initialize zerocoin supply to the supply from previous block
@@ -3222,7 +3222,7 @@ void static UpdateTip(CBlockIndex* pindexNew)
 {
     chainActive.SetTip(pindexNew);
 
-    // If turned on AutoZeromint will automatically convert CATO to zCATO
+    // If turned on AutoZeromint will automatically convert EBM to zEBM
     if (pwalletMain->isZeromintEnabled ())
         pwalletMain->AutoZeromint ();
 

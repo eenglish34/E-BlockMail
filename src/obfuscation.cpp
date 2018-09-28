@@ -779,7 +779,7 @@ void CObfuscationPool::ChargeRandomFees()
                 with using it to stop abuse. Otherwise it could serve as an attack vector and
                 allow endless transaction that would bloat Eblockmail and make it unusable. To
                 stop these kinds of attacks 1 in 10 successful transactions are charged. This
-                adds up to a cost of 0.001 CATO per transaction on average.
+                adds up to a cost of 0.001 EBM per transaction on average.
             */
             if (r <= 10) {
                 LogPrintf("CObfuscationPool::ChargeRandomFees -- charging random fees. %u\n", i);
@@ -1990,10 +1990,10 @@ int CObfuscationPool::GetDenominations(const std::vector<CTxOut>& vout, bool fSi
 
     // Function returns as follows:
     //
-    // bit 0 - 100CATO+1 ( bit on if present )
-    // bit 1 - 10CATO+1
-    // bit 2 - 1CATO+1
-    // bit 3 - .1CATO+1
+    // bit 0 - 100EBM+1 ( bit on if present )
+    // bit 1 - 10EBM+1
+    // bit 2 - 1EBM+1
+    // bit 3 - .1EBM+1
 
     return denom;
 }
