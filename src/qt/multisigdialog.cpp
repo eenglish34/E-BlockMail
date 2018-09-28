@@ -367,7 +367,7 @@ bool MultisigDialog::createMultisigTransaction(vector<CTxIn> vUserIn, vector<CTx
         }
 
         if(totalIn < totalOut){
-            throw runtime_error("Not enough CATO provided as input to complete transaction (including fee).");
+            throw runtime_error("Not enough EBM provided as input to complete transaction (including fee).");
         }
 
         //calculate change amount
@@ -432,7 +432,7 @@ bool MultisigDialog::createMultisigTransaction(vector<CTxIn> vUserIn, vector<CTx
            tx.vout.at(changeIndex).nValue -= fee;
            feeStringRet = strprintf("%d",((double)fee)/COIN).c_str();
         }else{
-            throw runtime_error("Not enough CATO provided to cover fee");
+            throw runtime_error("Not enough EBM provided to cover fee");
         }
 
         //clear junk from script sigs

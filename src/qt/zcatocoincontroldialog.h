@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef ZCATOCOINCONTROLDIALOG_H
-#define ZCATOCOINCONTROLDIALOG_H
+#ifndef ZEBMCOINCONTROLDIALOG_H
+#define ZEBMCOINCONTROLDIALOG_H
 
 #include <QDialog>
 #include <QTreeWidgetItem>
@@ -53,4 +53,4 @@ private slots:
     void ButtonAllClicked();
 };
 
-#endif // ZCATOCONTROLDIALOG_H
+#endif // ZEBMCONTROLDIALOG_H
