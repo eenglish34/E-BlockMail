@@ -1,9 +1,9 @@
 /* src/config/eblockmail-config.h.  Generated from eblockmail-config.h.in by configure.  */
 /* src/config/eblockmail-config.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef CATOCOIN_CONFIG_H
+#ifndef EBMCOIN_CONFIG_H
 
-#define CATOCOIN_CONFIG_H
+#define EBMCOIN_CONFIG_H
 
 /* Define if building universal (internal helper macro) */
 /* #undef AC_APPLE_UNIVERSAL_BUILD */
@@ -340,4 +340,4 @@
 /* Define for large files, on AIX-style hosts. */
 /* #undef _LARGE_FILES */
 
-#endif //CATOCOIN_CONFIG_H
+#endif //EBMCOIN_CONFIG_H
