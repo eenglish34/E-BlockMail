@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ $# -gt 1 ]; then
-    cd ~/wrk/cato2
+    cd ~/wrk/eblockmail
 fi
 if [ $# -gt 0 ]; then
     FILE="$1"

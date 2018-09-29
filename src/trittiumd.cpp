@@ -65,7 +65,7 @@ bool AppInit(int argc, char* argv[])
     //
     // Parameters
     //
-    // If Qt is used, parameters/eblockmail2.conf are parsed in qt/eblockmail.cpp's main()
+    // If Qt is used, parameters/eblockmail.conf are parsed in qt/eblockmail.cpp's main()
     ParseParameters(argc, argv);
 
     // Process help and version before taking care about datadir
