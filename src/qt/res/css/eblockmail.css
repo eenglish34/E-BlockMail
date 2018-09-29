@@ -917,7 +917,7 @@ background-image: url(':/images/eblockmail_logo_horizontal');
 background-repeat: no-repeat;
 }
 
-QWidget .QFrame#frame_Header { /* Header with Page-Title and CATOCOIN-image */
+QWidget .QFrame#frame_Header { /* Header with Page-Title and Eblockmail-image */
 min-width:400px;
 background-color:#ffffff;
 }
