@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>选择发送Eblockmail coin的地址</translation>
+        <translation>选择发送EBlockmail coin的地址</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>选择接收Eblockmail coin的地址</translation>
+        <translation>选择接收EBlockmail coin的地址</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -62,12 +62,12 @@
         <translation>接收地址</translation>
     </message>
     <message>
-        <source>These are your Eblockmail addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这是用于发送Eblockmail的地址。在发送Eblockmail之前，请认真核查发送金额和接收地址。</translation>
+        <source>These are your EBlockmail addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>这是用于发送EBlockmail的地址。在发送EBlockmail之前，请认真核查发送金额和接收地址。</translation>
     </message>
     <message>
-        <source>These are your Eblockmail addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>这是用于接收Eblockmail的钱包地址。建议每一笔交易都使用一个新的钱包地址。</translation>
+        <source>These are your EBlockmail addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>这是用于接收EBlockmail的钱包地址。建议每一笔交易都使用一个新的钱包地址。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -136,10 +136,6 @@
         <translation>用于在操作系统帐户遭到破坏时禁用琐碎的sendmoney。没有真正的安全性。</translation>
     </message>
     <message>
-        <source>For anonymization and staking only</source>
-        <translation>仅用于匿名化和加密</translation>
-    </message>
-    <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>输入一个新的钱包密码&lt;br/&gt;钱包密码&lt;b&gt;建议使用10位以上的随机字符&lt;/b&gt;，或者&lt;b&gt; 3个以上的单词&lt;/b&gt;。并建议有序使用大小写字母。</translation>
     </message>
@@ -176,16 +172,16 @@
         <translation>确认钱包加密</translation>
     </message>
     <message>
-        <source>Eblockmail will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your CATOCOINs from being stolen by malware infecting your computer.</source>
-        <translation>Eblockmail将关闭以完成加密过程。但是，仅仅加密您的钱包是不够的，因为它并不能阻止恶意软件从您的电脑里面偷取CATOCOINs。</translation>
+        <source>EBlockmail will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
+        <translation>EBlockmail将关闭以完成加密过程。但是，仅仅加密您的钱包是不够的，因为它并不能阻止恶意软件从您的电脑里面偷取PIVs。</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>您确定加密您的钱包吗？</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR CATOCOIN&lt;/b&gt;!</source>
-        <translation>注意：请妥善保管好你的密码，因为在加密后，没有密码将无法打开钱包。这将会让您&lt;b&gt;损失钱包中所有的CATOCOIN&lt;/b&gt;！</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
+        <translation>注意：请妥善保管好你的密码，因为在加密后，没有密码将无法打开钱包。这将会让您&lt;b&gt;损失钱包中所有的PIV&lt;/b&gt;！</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -229,6 +225,9 @@
     </message>
 </context>
 <context>
+    <name>BanTableModel</name>
+    </context>
+<context>
     <name>Bip38ToolDialog</name>
     <message>
         <source>BIP 38 Tool</source>
@@ -239,16 +238,8 @@
         <translation>&amp;BIP 38 加密</translation>
     </message>
     <message>
-        <source>Enter a Eblockmail Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>输入您要使用BIP 38加密的Eblockmail地址。在中间框中输入密码。按加密计算加密私钥。</translation>
-    </message>
-    <message>
         <source>Address:</source>
         <translation>地址：</translation>
-    </message>
-    <message>
-        <source>The Eblockmail address to sign the message with</source>
-        <translation>该Eblockmail地址签名的消息</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -279,16 +270,8 @@
         <translation>将当前签名复制到系统剪贴板</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Eblockmail address</source>
-        <translation>签署消息以证明您拥有此Eblockmail地址</translation>
-    </message>
-    <message>
         <source>Encrypt &amp;Key</source>
         <translation>加密&amp;秘钥</translation>
-    </message>
-    <message>
-        <source>Reset all sign message fields</source>
-        <translation>重置所有签名信息</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -303,20 +286,8 @@
         <translation>输入BIP 38加密私钥。 在中间框中输入密码。 单击解密密钥计算私钥。 密钥解密后，单击“导入地址”将将该私钥添加到钱包中。</translation>
     </message>
     <message>
-        <source>The Eblockmail address the message was signed with</source>
-        <translation>由Eblockmail地址签名的消息</translation>
-    </message>
-    <message>
-        <source>Verify the message to ensure it was signed with the specified Eblockmail address</source>
-        <translation>验证消息确保它已使用指定的Eblockmail地址进行签名</translation>
-    </message>
-    <message>
         <source>Decrypt &amp;Key</source>
         <translation>解密&amp;秘钥</translation>
-    </message>
-    <message>
-        <source>Reset all verify message fields</source>
-        <translation>重置所有验证消息</translation>
     </message>
     <message>
         <source>Decrypted Key:</source>
@@ -573,10 +544,6 @@
         <source>&amp;Command-line options</source>
         <translation>&amp;C命令行选项</translation>
     </message>
-    <message numerus="yes">
-        <source>Processed %n blocks of transaction history.</source>
-        <translation><numerusform>处理的 %n个交易记录块。</numerusform></translation>
-    </message>
     <message>
         <source>Synchronizing additional data: %p%</source>
         <translation>同步其他数据：%p%</translation>
@@ -602,12 +569,12 @@
         <translation>标签工具栏</translation>
     </message>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>Eblockmail Core</translation>
+        <source>EBlockmail Core</source>
+        <translation>EBlockmail Core</translation>
     </message>
     <message>
-        <source>Send coins to a Eblockmail address</source>
-        <translation>发送数字货币到Eblockmail地址</translation>
+        <source>Send coins to a EBlockmail address</source>
+        <translation>发送数字货币到EBlockmail地址</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and eblockmail: URIs)</source>
@@ -618,10 +585,6 @@
         <translation>&amp;P隐私</translation>
     </message>
     <message>
-        <source>Privacy Action for zCATOCOIN and Obfuscation</source>
-        <translation>zCATOCOIN和混淆的隐私操作</translation>
-    </message>
-    <message>
         <source>&amp;Masternodes</source>
         <translation>&amp;M主节点</translation>
     </message>
@@ -630,24 +593,24 @@
         <translation>浏览主节点</translation>
     </message>
     <message>
-        <source>&amp;About Eblockmail Core</source>
-        <translation>&amp;A关于Eblockmail Core</translation>
+        <source>&amp;About EBlockmail Core</source>
+        <translation>&amp;A关于EBlockmail Core</translation>
     </message>
     <message>
-        <source>Show information about Eblockmail Core</source>
-        <translation>显示Eblockmail  Core的相关信息</translation>
+        <source>Show information about EBlockmail Core</source>
+        <translation>显示EBlockmail  Core的相关信息</translation>
     </message>
     <message>
-        <source>Modify configuration options for Eblockmail</source>
-        <translation>修改Eblockmail的配置选项</translation>
+        <source>Modify configuration options for EBlockmail</source>
+        <translation>修改EBlockmail的配置选项</translation>
     </message>
     <message>
-        <source>Sign messages with your Eblockmail addresses to prove you own them</source>
-        <translation>使用您的Eblockmail地址验证消息，以证明您拥有他们</translation>
+        <source>Sign messages with your EBlockmail addresses to prove you own them</source>
+        <translation>使用您的EBlockmail地址验证消息，以证明您拥有他们</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Eblockmail addresses</source>
-        <translation>验证消息确保它已使用指定的Eblockmail地址进行签名</translation>
+        <source>Verify messages to ensure they were signed with specified EBlockmail addresses</source>
+        <translation>验证消息确保它已使用指定的EBlockmail地址进行签名</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -678,8 +641,8 @@
         <translation>打开主节点配置文件</translation>
     </message>
     <message>
-        <source>Open a Eblockmail: URI or payment request</source>
-        <translation>打开Eblockmail：URI或付款请求</translation>
+        <source>Open a EBlockmail: URI or payment request</source>
+        <translation>打开EBlockmail：URI或付款请求</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -690,17 +653,12 @@
         <translation>区块浏览窗口</translation>
     </message>
     <message>
-        <source>Show the Eblockmail Core help message to get a list with possible Eblockmail command-line options</source>
-        <translation>显示Eblockmail Core帮助信息并获取Eblockmail命令行选项列表</translation>
+        <source>Show the EBlockmail Core help message to get a list with possible EBlockmail command-line options</source>
+        <translation>显示EBlockmail Core帮助信息并获取EBlockmail命令行选项列表</translation>
     </message>
     <message>
-        <source>Eblockmail Core client</source>
-        <translation>Eblockmail Core 客户端</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n active connection(s) to Eblockmail network</source>
-        <translation><numerusform>%n 活动连接到Eblockmail网络
-</numerusform></translation>
+        <source>EBlockmail Core client</source>
+        <translation>EBlockmail Core 客户端</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -721,26 +679,6 @@
     <message>
         <source>Up to date</source>
         <translation>最新</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n hour(s)</source>
-        <translation><numerusform>%n 小时</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n day(s)</source>
-        <translation><numerusform>%n 天</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n week(s)</source>
-        <translation><numerusform>%n 星期</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n year(s)</source>
-        <translation><numerusform>%n 年</numerusform></translation>
-    </message>
-    <message>
-        <source>%1 behind</source>
-        <translation>%1 落后</translation>
     </message>
     <message>
         <source>Catching up...</source>
@@ -865,31 +803,31 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>Eblockmail Core</translation>
+        <source>EBlockmail Core</source>
+        <translation>EBlockmail Core</translation>
     </message>
     <message>
-        <source>About Eblockmail Core</source>
-        <translation>关于Eblockmail Core</translation>
+        <source>About EBlockmail Core</source>
+        <translation>关于EBlockmail Core</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>Welcome to Eblockmail Core.</source>
-        <translation>欢迎使用 Eblockmail Core</translation>
+        <source>Welcome to EBlockmail Core.</source>
+        <translation>欢迎使用 EBlockmail Core</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Eblockmail Core will store its data.</source>
-        <translation>由于这是该程序第一次启动，您可以选择存储Eblockmail Core 数据的位置。</translation>
+        <source>As this is the first time the program is launched, you can choose where EBlockmail Core will store its data.</source>
+        <translation>由于这是该程序第一次启动，您可以选择存储EBlockmail Core 数据的位置。</translation>
     </message>
     <message>
-        <source>Eblockmail Core will download and store a copy of the Eblockmail block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Eblockmail Core将下载并存储Eblockmail区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
+        <source>EBlockmail Core will download and store a copy of the EBlockmail block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>EBlockmail Core将下载并存储EBlockmail区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
     </message>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>Eblockmail Core</translation>
+        <source>EBlockmail Core</source>
+        <translation>EBlockmail Core</translation>
     </message>
     <message>
         <source>Error</source>
@@ -941,6 +879,17 @@ Address: %4
         <source>Address:</source>
         <translation>地址：</translation>
     </message>
+    <message>
+        <source>Enter a label for this address to add it to your address book</source>
+        <translation>输入此地址的标签，将其添加到您的地址列表中</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>未设置标签</translation>
+    </message>
+    </context>
+<context>
+    <name>MultisigDialog</name>
     </context>
 <context>
     <name>ObfuscationConfig</name>
@@ -971,16 +920,16 @@ Address: %4
         <translation>如果您要禁用未经确认发送，在至少有一个确认之前&lt;br/&gt;不能更改。&lt;br/&gt;这也将影响您的余额计算。</translation>
     </message>
     <message>
-        <source>Automatically open the Eblockmail client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动打开路由器上的Eblockmail钱包使用的端口。 这只有当您的路由器支持UPnP并且该享生效时才有用。</translation>
+        <source>Automatically open the EBlockmail client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>自动打开路由器上的EBlockmail钱包使用的端口。 这只有当您的路由器支持UPnP并且该享生效时才有用。</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
         <translation>&amp;使用SOCKS5代理（默认代理）</translation>
     </message>
     <message>
-        <source>&amp;Start Eblockmail on system login</source>
-        <translation>&amp;开机启动Eblockmail</translation>
+        <source>&amp;Start EBlockmail on system login</source>
+        <translation>&amp;开机启动EBlockmail</translation>
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
@@ -1040,7 +989,7 @@ Address: %4
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>选择显示发送Eblockmail的默认单位。</translation>
+        <translation>选择显示发送EBlockmail的默认单位。</translation>
     </message>
     <message>
         <source>Decimal digits</source>
@@ -1102,7 +1051,7 @@ Address: %4
         <source>The supplied proxy address is invalid.</source>
         <translation>提供的代理地址无效。</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -1118,12 +1067,8 @@ Address: %4
         <translation>您目前的支出余额</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Eblockmail network after a connection is established, but this process has not completed yet.</source>
-        <translation>显示的信息可能已过期。建立连接后，您的钱包会自动与Eblockmail网络同步，但此过程尚未完成。</translation>
-    </message>
-    <message>
-        <source>Your current total balance</source>
-        <translation>您当前的总余额</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the EBlockmail network after a connection is established, but this process has not completed yet.</source>
+        <translation>显示的信息可能已过期。建立连接后，您的钱包会自动与EBlockmail网络同步，但此过程尚未完成。</translation>
     </message>
     <message>
         <source>Your current balance in watch-only addresses</source>
@@ -1139,8 +1084,8 @@ Address: %4
 <context>
     <name>PrivacyDialog</name>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Eblockmail network after a connection is established, but this process has not completed yet.</source>
-        <translation>显示的信息可能已过期。建立连接后，您的钱包会自动与Eblockmail网络同步，但此过程尚未完成。</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the EBlockmail network after a connection is established, but this process has not completed yet.</source>
+        <translation>显示的信息可能已过期。建立连接后，您的钱包会自动与EBlockmail网络同步，但此过程尚未完成。</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
@@ -1189,7 +1134,7 @@ Address: %4
     <name>RPCConsole</name>
     <message>
         <source>&amp;Information</source>
-        <translation>&amp;信息</translation>
+        <translation>&amp;I信息</translation>
     </message>
     <message>
         <source>&amp;Open</source>
@@ -1227,12 +1172,12 @@ Address: %4
         <translation>&amp;消息：</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Eblockmail network.</source>
-        <translation>附加到付款请求的可选消息，将在请求打开时显示。 注意：消息不会在付款时通过Eblockmail网络发送。</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the EBlockmail network.</source>
+        <translation>附加到付款请求的可选消息，将在请求打开时显示。 注意：消息不会在付款时通过EBlockmail网络发送。</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Eblockmail network.</source>
-        <translation>附加到付款请求的可选消息，将在请求打开时显示。&lt;br&gt; 注意：消息不会在付款时通过Eblockmail网络发送。</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the EBlockmail network.</source>
+        <translation>附加到付款请求的可选消息，将在请求打开时显示。&lt;br&gt; 注意：消息不会在付款时通过EBlockmail网络发送。</translation>
     </message>
     <message>
         <source>&amp;Label:</source>
@@ -1367,8 +1312,8 @@ Address: %4
         <translation>消息:</translation>
     </message>
     <message>
-        <source>A message that was attached to the Eblockmail: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Eblockmail network.</source>
-        <translation>附加到Eblockmail：URI的消息，该消息将与转账信息一起存储以供参考。 注意：此消息不会通过Eblockmail网络发送。</translation>
+        <source>A message that was attached to the EBlockmail: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the EBlockmail network.</source>
+        <translation>附加到EBlockmail：URI的消息，该消息将与转账信息一起存储以供参考。 注意：此消息不会通过EBlockmail网络发送。</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to your address book</source>
@@ -1393,8 +1338,8 @@ Address: %4
         <translation>您可以使用地址签名消息，以证明您拥有他们。 小心不要签名任何您不了解的，因为网络钓鱼攻击可能会试图欺骗您，以让您签名。 只能签署您熟悉并且了解和同意的。</translation>
     </message>
     <message>
-        <source>The Eblockmail address to sign the message with</source>
-        <translation>该Eblockmail地址签名的消息</translation>
+        <source>The EBlockmail address to sign the message with</source>
+        <translation>该EBlockmail地址签名的消息</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1421,16 +1366,16 @@ Address: %4
         <translation>将当前签名复制到系统剪贴板</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Eblockmail address</source>
-        <translation>签署消息以证明您拥有此Eblockmail地址</translation>
+        <source>Sign the message to prove you own this EBlockmail address</source>
+        <translation>签署消息以证明您拥有此EBlockmail地址</translation>
     </message>
     <message>
-        <source>The Eblockmail address the message was signed with</source>
-        <translation>由Eblockmail地址签名的消息</translation>
+        <source>The EBlockmail address the message was signed with</source>
+        <translation>由EBlockmail地址签名的消息</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Eblockmail address</source>
-        <translation>验证消息确保它已使用指定的Eblockmail地址进行签名</translation>
+        <source>Verify the message to ensure it was signed with the specified EBlockmail address</source>
+        <translation>验证消息确保它已使用指定的EBlockmail地址进行签名</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1508,8 +1453,8 @@ Address: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>Eblockmail Core</translation>
+        <source>EBlockmail Core</source>
+        <translation>EBlockmail Core</translation>
     </message>
     </context>
 <context>
@@ -1588,7 +1533,7 @@ Address: %4
     </message>
     </context>
 <context>
-    <name>ZPhrControlDialog</name>
+    <name>ZPivControlDialog</name>
     </context>
 <context>
     <name>eblockmail-core</name>
@@ -1597,8 +1542,8 @@ Address: %4
         <translation>在收到相关警报时执行命令，或者看到一个很长的分叉（cmd中的%s被消息替换）</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Eblockmail Core will not work properly.</source>
-        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，Eblockmail Core将无法正常工作。</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong EBlockmail Core will not work properly.</source>
+        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，EBlockmail Core将无法正常工作。</translation>
     </message>
     <message>
         <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>

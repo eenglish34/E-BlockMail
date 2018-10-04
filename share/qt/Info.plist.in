@@ -17,7 +17,7 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers, 2014-@COPYRIGHT_YEAR@ The Dash Core developers, 2015-@COPYRIGHT_YEAR@ The Jiyo Core developers</string>
+  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers, 2014-@COPYRIGHT_YEAR@ The Dash Core developers, 2015-@COPYRIGHT_YEAR@ The EBlockmail Core developers</string>
 
   <key>CFBundleShortVersionString</key>
   <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@</string>
@@ -29,10 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Jiyo-Qt</string>
+  <string>EBlockmail-Qt</string>
+  
+  <key>CFBundleName</key>
+  <string>EBlockmail-Qt</string>
+
+  <key>LSHasLocalizedDisplayName</key>
+  <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.jiyo.Jiyo-Qt</string>
+  <string>io.eblockmail.EBlockmail-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -40,10 +46,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>io.jiyo.JiyoPayment</string>
+      <string>io.eblockmail.EBlockmailPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>jiyo</string>
+        <string>eblockmail</string>
       </array>
     </dict>
   </array>
@@ -52,9 +58,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>io.jiyo.paymentrequest</string>
+      <string>io.eblockmail.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Jiyo payment request</string>
+      <string>EBlockmail payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -62,10 +68,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-jiyo-payment-request</string>
+        <string>application/x-eblockmail-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>jiyopaymentrequest</string>
+          <string>eblockmailpaymentrequest</string>
         </array>
       </dict>
     </dict>
@@ -78,7 +84,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>io.jiyo.paymentrequest</string>
+        <string>io.eblockmail.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>

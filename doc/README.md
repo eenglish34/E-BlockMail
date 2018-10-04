@@ -1,13 +1,13 @@
-Eblockmail Core
+EBlockmail Core
 =====================
 
 Setup
 ---------------------
-[Eblockmail Core](http://Eblockmailcoin.com) is the original Eblockmail client and it builds the backbone of the network. However, it downloads and stores the entire history of Eblockmail transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[EBlockmail Core](http://eblockmail.org/wallet) is the original EBlockmail client and it builds the backbone of the network. However, it downloads and stores the entire history of EBlockmail transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Eblockmail on your native platform.
+The following are some helpful notes on how to run EBlockmail on your native platform.
 
 ### Unix
 
@@ -22,18 +22,19 @@ Unpack the files into a directory, and then run eblockmail-qt.exe.
 
 ### OSX
 
-Drag Eblockmail-Qt to your applications folder, and then run Eblockmail-Qt.
+Drag EBlockmail-Qt to your applications folder, and then run EBlockmail-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Eblockmail Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
+* See the documentation at the [EBlockmail Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php) or on the [Eblockmail Forum](http://Eblockmailcoin.com/).
-* Join one of our Discord groups [Eblockmail Discord Groups](https://discord.gg/YcnvMqt).
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [EBlockmail Forum](http://forum.eblockmail.org/).
+* Join our Discord server [Discord Server](https://discord.eblockmail.org)
+* Join one of our Slack groups [EBlockmail Slack Groups](https://eblockmail.org/slack-logins/) (Main community is replaced by Discord).
 
 Building
 ---------------------
-The following are developer notes on how to build Eblockmail on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build EBlockmail on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OSX Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -41,7 +42,7 @@ The following are developer notes on how to build Eblockmail on your native plat
 
 Development
 ---------------------
-The Eblockmail repo's [root README](https://github.com/eastcoastcrypto/Eblockmail/blob/master/README.md) contains relevant information on the development process and automated testing.
+The EBlockmail repo's [root README](https://github.com/EBlockmail-Project/EBlockmail/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -55,8 +56,8 @@ The Eblockmail repo's [root README](https://github.com/eastcoastcrypto/Eblockmai
 
 ### Resources
 
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) .
-* Join the [Eblockmail-Dev] Discord groups [Eblockmail Discord Groups](https://discord.gg/YcnvMqt).
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [EBlockmail](http://forum.eblockmail.org/) forum.
+* Join the [EBlockmail-Dev](https://eblockmail-dev.slack.com/) Slack group ([Sign-Up](https://eblockmail-dev.herokuapp.com/)).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

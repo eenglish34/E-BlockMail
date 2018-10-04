@@ -7,13 +7,18 @@
         <file alias="de">locale/eblockmail_de.qm</file>
         <file alias="en">locale/eblockmail_en.qm</file>
         <file alias="en_US">locale/eblockmail_en_US.qm</file>
+        <file alias="eo">locale/eblockmail_eo.qm</file>
         <file alias="es">locale/eblockmail_es.qm</file>
+        <file alias="es_ES">locale/eblockmail_es_ES.qm</file>
         <file alias="fi">locale/eblockmail_fi.qm</file>
         <file alias="fr_FR">locale/eblockmail_fr_FR.qm</file>
+        <file alias="hi_IN">locale/eblockmail_hi_IN.qm</file>
         <file alias="hr">locale/eblockmail_hr.qm</file>
+        <file alias="hr_HR">locale/eblockmail_hr_HR.qm</file>
         <file alias="it">locale/eblockmail_it.qm</file>
         <file alias="ja">locale/eblockmail_ja.qm</file>
         <file alias="ko_KR">locale/eblockmail_ko_KR.qm</file>
+        <file alias="lt_LT">locale/eblockmail_lt_LT.qm</file>
         <file alias="nl">locale/eblockmail_nl.qm</file>
         <file alias="pl">locale/eblockmail_pl.qm</file>
         <file alias="pt">locale/eblockmail_pt.qm</file>
@@ -24,6 +29,7 @@
         <file alias="sv">locale/eblockmail_sv.qm</file>
         <file alias="tr">locale/eblockmail_tr.qm</file>
         <file alias="uk">locale/eblockmail_uk.qm</file>
+        <file alias="vi">locale/eblockmail_vi.qm</file>
         <file alias="zh_CN">locale/eblockmail_zh_CN.qm</file>
         <file alias="zh_TW">locale/eblockmail_zh_TW.qm</file>
     </qresource>

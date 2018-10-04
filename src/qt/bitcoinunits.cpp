@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The EBlockmail developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,18 +19,18 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(EBM);
-    unitlist.append(mEBM);
-    unitlist.append(uEBM);
+    unitlist.append(PIV);
+    unitlist.append(mPIV);
+    unitlist.append(uPIV);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case EBM:
-    case mEBM:
-    case uEBM:
+    case PIV:
+    case mPIV:
+    case uPIV:
         return true;
     default:
         return false;
@@ -40,11 +40,11 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case EBM:
+    case PIV:
         return QString("eblockmail");
-    case mEBM:
+    case mPIV:
         return QString("meblockmail");
-    case uEBM:
+    case uPIV:
         return QString::fromUtf8("ueblockmail");
     default:
         return QString("???");
@@ -55,23 +55,23 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case EBM:
-            return QString("EBM");
-        case mEBM:
-            return QString("mEBM");
-        case uEBM:
-            return QString::fromUtf8("μEBM");
+        case PIV:
+            return QString("PIV");
+        case mPIV:
+            return QString("mPIV");
+        case uPIV:
+            return QString::fromUtf8("μPIV");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case EBM:
-            return QString("tEBM");
-        case mEBM:
-            return QString("mtEBM");
-        case uEBM:
-            return QString::fromUtf8("μtEBM");
+        case PIV:
+            return QString("tPIV");
+        case mPIV:
+            return QString("mtPIV");
+        case uPIV:
+            return QString::fromUtf8("μtPIV");
         default:
             return QString("???");
         }
@@ -82,23 +82,23 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case EBM:
-            return QString("EBM");
-        case mEBM:
-            return QString("Milli-EBM (1 / 1" THIN_SP_UTF8 "000)");
-        case uEBM:
-            return QString("Micro-EBM (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case PIV:
+            return QString("PIV");
+        case mPIV:
+            return QString("Milli-PIV (1 / 1" THIN_SP_UTF8 "000)");
+        case uPIV:
+            return QString("Micro-PIV (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case EBM:
-            return QString("TestEBMs");
-        case mEBM:
-            return QString("Milli-TestEBM (1 / 1" THIN_SP_UTF8 "000)");
-        case uEBM:
-            return QString("Micro-TestEBM (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case PIV:
+            return QString("TestPIVs");
+        case mPIV:
+            return QString("Milli-TestPIV (1 / 1" THIN_SP_UTF8 "000)");
+        case uPIV:
+            return QString("Micro-TestPIV (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -108,11 +108,11 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case EBM:
+    case PIV:
         return 100000000;
-    case mEBM:
+    case mPIV:
         return 100000;
-    case uEBM:
+    case uPIV:
         return 100;
     default:
         return 100000000;
@@ -122,11 +122,11 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case EBM:
+    case PIV:
         return 8;
-    case mEBM:
+    case mPIV:
         return 5;
-    case uEBM:
+    case uPIV:
         return 2;
     default:
         return 0;

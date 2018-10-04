@@ -62,12 +62,12 @@
         <translation>Vastaanottavat osoitteet</translation>
     </message>
     <message>
-        <source>These are your Eblockmail addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Nämä ovat sinun Eblockmail osoitteesi maksujen lähetystä varten. Tarkista aina määrä ja vastaanottava osoite ennen kolikoiden lähettämistä.</translation>
+        <source>These are your EBlockmail addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Nämä ovat sinun EBlockmail osoitteesi maksujen lähetystä varten. Tarkista aina määrä ja vastaanottava osoite ennen kolikoiden lähettämistä.</translation>
     </message>
     <message>
-        <source>These are your Eblockmail addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Nämä ovat sinun Eblockmail osoitteesi maksujen vastaanottamista varten. On suositeltavaa käyttää uutta vastaanottavaa osoitetta jokaiselle uudelle rahansiirrolle.</translation>
+        <source>These are your EBlockmail addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Nämä ovat sinun EBlockmail osoitteesi maksujen vastaanottamista varten. On suositeltavaa käyttää uutta vastaanottavaa osoitetta jokaiselle uudelle rahansiirrolle.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -93,7 +93,11 @@
         <source>Exporting Failed</source>
         <translation>Vienti epäonnistui</translation>
     </message>
-    </context>
+    <message>
+        <source>There was an error trying to save the address list to %1. Please try again.</source>
+        <translation>Tapahtui virhe osoitelistan tallennuksessa %1. Yritä uudestaan.</translation>
+    </message>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -132,10 +136,6 @@
         <translation>Ottaa pois käytöstä tavallisen sendmoneyn kun käyttöjärjestelmä on kompromisoitu. Ei tarjoa todellista turvaa.</translation>
     </message>
     <message>
-        <source>For anonymization and staking only</source>
-        <translation>Vain anonymisointiin ja panostukseen</translation>
-    </message>
-    <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>Syötä uusi salausavain lompakkoon &lt;br/&gt; Käytä salausavaimena &lt;b&gt;yli kymmentä satunnaista merkkiä&lt;/b&gt;, tai &lt;b&gt; kahdeksaa tai useampaa sanaa&lt;/b&gt;.</translation>
     </message>
@@ -172,16 +172,16 @@
         <translation>Vahvista lompakon salaus</translation>
     </message>
     <message>
-        <source>Eblockmail will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your CATOCOINs from being stolen by malware infecting your computer.</source>
-        <translation>Eblockmail sulkeutuu salausprosessin ajaksi. Muista, että lompakon salaus ei voi täysin suojella CATOCOINien varkaudelta, jos tietokoneesi sisältää haittaohjelmia.</translation>
+        <source>EBlockmail will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
+        <translation>EBlockmail sulkeutuu salausprosessin ajaksi. Muista, että lompakon salaus ei voi täysin suojella PIVien varkaudelta, jos tietokoneesi sisältää haittaohjelmia.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Oletko varma että tahdot salata lompakkosi?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR CATOCOIN&lt;/b&gt;!</source>
-        <translation>Varoitus: Jos salaat lompakkosi ja unohdat salausavaimesi, &lt;b&gt;menetät kaikki CATOCOINisi&lt;/b&gt;</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
+        <translation>Varoitus: Jos salaat lompakkosi ja unohdat salausavaimesi, &lt;b&gt;menetät kaikki PIVisi&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -225,6 +225,9 @@
     </message>
 </context>
 <context>
+    <name>BanTableModel</name>
+    </context>
+<context>
     <name>Bip38ToolDialog</name>
     <message>
         <source>BIP 38 Tool</source>
@@ -235,17 +238,8 @@
         <translation>&amp;BIP 38 Salaus</translation>
     </message>
     <message>
-        <source>Enter a Eblockmail Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Syötä Eblockmail osoite, jonnka tahtoisit salata käyttäen BIP 38.
-Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityisavaimen.</translation>
-    </message>
-    <message>
         <source>Address:</source>
         <translation>Osoite:</translation>
-    </message>
-    <message>
-        <source>The Eblockmail address to sign the message with</source>
-        <translation>Eblockmail osoite, jolla viesti allekirjoitetaan</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -276,16 +270,8 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
         <translation>Kopioi nykyinen allekirjoitus järjestelmän leikepöydälle</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Eblockmail address</source>
-        <translation>Allekirjoita viesti todistaaksesi, että omistat tämän Eblockmail osoitteen</translation>
-    </message>
-    <message>
         <source>Encrypt &amp;Key</source>
         <translation>Salaus &amp;Avain</translation>
-    </message>
-    <message>
-        <source>Reset all sign message fields</source>
-        <translation>Tyhjennä kaikki allekirjoita viesti kentät</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -300,20 +286,8 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
         <translation>Syötä BIP 38 salattu yksityisavain. Syötä salausavain laatikkoon. Paina Avaa Salaus tuottaaksesi yksityisavaimen. Kun avain on dekryptattu, painamalla "Import osoite" lisää tämän yksityisavaimen lompakkoon.</translation>
     </message>
     <message>
-        <source>The Eblockmail address the message was signed with</source>
-        <translation>Eblockmail osoite, jolla viesti allekirjoitettiin</translation>
-    </message>
-    <message>
-        <source>Verify the message to ensure it was signed with the specified Eblockmail address</source>
-        <translation>Vahvista että viesti on allekirjoitettu kyseessä olevalla Eblockmail osoitteella.</translation>
-    </message>
-    <message>
         <source>Decrypt &amp;Key</source>
         <translation>Salauksen avaus &amp;Avain</translation>
-    </message>
-    <message>
-        <source>Reset all verify message fields</source>
-        <translation>Tyhjennä kaikki vahvista viesti kentät</translation>
     </message>
     <message>
         <source>Decrypted Key:</source>
@@ -591,12 +565,12 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
         <translation>&amp;Apua</translation>
     </message>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>Eblockmail Ydin</translation>
+        <source>EBlockmail Core</source>
+        <translation>EBlockmail Ydin</translation>
     </message>
     <message>
-        <source>Send coins to a Eblockmail address</source>
-        <translation>Lähetä kolikkoja Eblockmail osoitteeseen</translation>
+        <source>Send coins to a EBlockmail address</source>
+        <translation>Lähetä kolikkoja EBlockmail osoitteeseen</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and eblockmail: URIs)</source>
@@ -611,24 +585,24 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
         <translation>Selaa masternodeja</translation>
     </message>
     <message>
-        <source>&amp;About Eblockmail Core</source>
-        <translation>Eblockmail Core &amp;ytimestä</translation>
+        <source>&amp;About EBlockmail Core</source>
+        <translation>EBlockmail Core &amp;ytimestä</translation>
     </message>
     <message>
-        <source>Show information about Eblockmail Core</source>
-        <translation>Näytä tietoja Eblockmail Ytimestä</translation>
+        <source>Show information about EBlockmail Core</source>
+        <translation>Näytä tietoja EBlockmail Ytimestä</translation>
     </message>
     <message>
-        <source>Modify configuration options for Eblockmail</source>
-        <translation>Muokkaa konfiguraatio vaihtoehtoja Eblockmail:lle</translation>
+        <source>Modify configuration options for EBlockmail</source>
+        <translation>Muokkaa konfiguraatio vaihtoehtoja EBlockmail:lle</translation>
     </message>
     <message>
-        <source>Sign messages with your Eblockmail addresses to prove you own them</source>
+        <source>Sign messages with your EBlockmail addresses to prove you own them</source>
         <translation>Allekirjoita viestejä todistaaksesi, että omistat ne.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Eblockmail addresses</source>
-        <translation>Vahvista viestit varmistaaksesi, että ne allekirjoitettiin tietyllä Eblockmail osoiteella.</translation>
+        <source>Verify messages to ensure they were signed with specified EBlockmail addresses</source>
+        <translation>Vahvista viestit varmistaaksesi, että ne allekirjoitettiin tietyllä EBlockmail osoiteella.</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -659,8 +633,8 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
         <translation>Avaa Masternode konfiguraatiotiedosto</translation>
     </message>
     <message>
-        <source>Open a Eblockmail: URI or payment request</source>
-        <translation>Avaa Eblockmail: URI tai pyydä maksua</translation>
+        <source>Open a EBlockmail: URI or payment request</source>
+        <translation>Avaa EBlockmail: URI tai pyydä maksua</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -671,12 +645,12 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
         <translation>Lohkon tutkija näkymä</translation>
     </message>
     <message>
-        <source>Show the Eblockmail Core help message to get a list with possible Eblockmail command-line options</source>
-        <translation>Näytä Eblockmail Ydin apuviesti saadaksesi lista mahdollisista Eblockmail komentolinja komennoista.</translation>
+        <source>Show the EBlockmail Core help message to get a list with possible EBlockmail command-line options</source>
+        <translation>Näytä EBlockmail Ydin apuviesti saadaksesi lista mahdollisista EBlockmail komentolinja komennoista.</translation>
     </message>
     <message>
-        <source>Eblockmail Core client</source>
-        <translation>Eblockmail Ydin asiakasohjelma</translation>
+        <source>EBlockmail Core client</source>
+        <translation>EBlockmail Ydin asiakasohjelma</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -701,10 +675,6 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
     <message>
         <source>%1 and %2</source>
         <translation>%1 ja %2</translation>
-    </message>
-    <message>
-        <source>%1 behind</source>
-        <translation>%1 takana</translation>
     </message>
     <message>
         <source>Catching up...</source>
@@ -811,6 +781,10 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
     <message>
         <source>Amount</source>
         <translation>Määrä</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Tyyppi</translation>
     </message>
     <message>
         <source>Date</source>
@@ -934,8 +908,8 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>Eblockmail Ydin</translation>
+        <source>EBlockmail Core</source>
+        <translation>EBlockmail Ydin</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -953,12 +927,12 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
         <translation>Tervetuloa</translation>
     </message>
     <message>
-        <source>Welcome to Eblockmail Core.</source>
-        <translation>Tervetuloa Eblockmail Ytimeen.</translation>
+        <source>Welcome to EBlockmail Core.</source>
+        <translation>Tervetuloa EBlockmail Ytimeen.</translation>
     </message>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>Eblockmail Ydin</translation>
+        <source>EBlockmail Core</source>
+        <translation>EBlockmail Ydin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1079,6 +1053,10 @@ Syötä salausavain laatikon keskelle. Paina salaa tuottaaksesi salatun yksityis
         <translation>Lähetä Masternode palkkioihin</translation>
     </message>
     <message>
+        <source>(no label)</source>
+        <translation>(ei nimikettä)</translation>
+    </message>
+    <message>
         <source>The entered address:
 </source>
         <translation>Syötetty osoite:</translation>
@@ -1113,6 +1091,21 @@ Please check the address and try again.</source>
     </message>
 </context>
 <context>
+    <name>MultisigDialog</name>
+    <message>
+        <source>Status:</source>
+        <translation>Tila:</translation>
+    </message>
+    <message>
+        <source>0</source>
+        <translation>0</translation>
+    </message>
+    <message>
+        <source>Amount:</source>
+        <translation>Määrä:</translation>
+    </message>
+    </context>
+<context>
     <name>ObfuscationConfig</name>
     <message>
         <source>Configure Obfuscation</source>
@@ -1135,32 +1128,32 @@ Please check the address and try again.</source>
         <translation>Valitse yksityisyyden taso.</translation>
     </message>
     <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 CATOCOIN</source>
-        <translation>Käytä 2 erillistä masternodea sekoittaaksesi enintään 10000 Eblockmail</translation>
+        <source>Use 2 separate masternodes to mix funds up to 10000 PIV</source>
+        <translation>Käytä 2 erillistä masternodea sekoittaaksesi enintään 10000 EBlockmail</translation>
     </message>
     <message>
-        <source>Use 8 separate masternodes to mix funds up to 10000 CATOCOIN</source>
-        <translation>Käytä 8 erillistä masternodea sekoittaaksesi enintään 10000 Eblockmail</translation>
+        <source>Use 8 separate masternodes to mix funds up to 10000 PIV</source>
+        <translation>Käytä 8 erillistä masternodea sekoittaaksesi enintään 10000 EBlockmail</translation>
     </message>
     <message>
         <source>Use 16 separate masternodes</source>
         <translation>Käytä 16 erillistä masternodea</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 CATOCOIN to anonymize 10000 CATOCOIN</source>
-        <translation>Tämä vaihtoehto on nopein ja maksaa noin ~0.025 CATOCOIN anonymoidaksesi 10000 Eblockmail</translation>
+        <source>This option is the quickest and will cost about ~0.025 PIV to anonymize 10000 PIV</source>
+        <translation>Tämä vaihtoehto on nopein ja maksaa noin ~0.025 PIV anonymoidaksesi 10000 EBlockmail</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 CATOCOIN to anonymize 10000 CATOCOIN</source>
-        <translation>Tämä vaihtoehto on suhteellisen nopea ja maksaa 0.05 Eblockmail anonymoidaksesi 10000 Eblockmail</translation>
+        <source>This option is moderately fast and will cost about 0.05 PIV to anonymize 10000 PIV</source>
+        <translation>Tämä vaihtoehto on suhteellisen nopea ja maksaa 0.05 EBlockmail anonymoidaksesi 10000 EBlockmail</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
         <translation>Tämä on hitain ja turvallisin vaihtoehto. Täydesti anonymisoiminen ei maksa mitään.</translation>
     </message>
     <message>
-        <source>0.1 CATOCOIN per 10000 CATOCOIN you anonymize.</source>
-        <translation>0.1 per 10000 Eblockmail, jotka anonymisoit.</translation>
+        <source>0.1 PIV per 10000 PIV you anonymize.</source>
+        <translation>0.1 per 10000 EBlockmail, jotka anonymisoit.</translation>
     </message>
     <message>
         <source>Obfuscation Configuration</source>
@@ -1209,12 +1202,12 @@ Please check the address and try again.</source>
         <translation>Ekspertti</translation>
     </message>
     <message>
-        <source>Automatically start Eblockmail after logging in to the system.</source>
-        <translation>Automaattisesti käynnistä Eblockmail kun kirjaudut sisään.</translation>
+        <source>Automatically start EBlockmail after logging in to the system.</source>
+        <translation>Automaattisesti käynnistä EBlockmail kun kirjaudut sisään.</translation>
     </message>
     <message>
-        <source>&amp;Start Eblockmail on system login</source>
-        <translation>&amp;Aloita Eblockmail järjestelmän kirjautumisessa</translation>
+        <source>&amp;Start EBlockmail on system login</source>
+        <translation>&amp;Aloita EBlockmail järjestelmän kirjautumisessa</translation>
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
@@ -1233,12 +1226,12 @@ Please check the address and try again.</source>
         <translation>&amp;Verkko</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Eblockmail.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting EBlockmail.</source>
         <translation>Käyttöliittymän kielen voi säätää täällä. Tämä asetus tulee voimaan uudelleenkäynnistettyäsi lompakon.</translation>
     </message>
     <message>
-        <source>Connect to the Eblockmail network through a SOCKS5 proxy.</source>
-        <translation>Yhdistä Eblockmail verkkoon SOCKS5 proxyn kautta</translation>
+        <source>Connect to the EBlockmail network through a SOCKS5 proxy.</source>
+        <translation>Yhdistä EBlockmail verkkoon SOCKS5 proxyn kautta</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1340,7 +1333,7 @@ Please check the address and try again.</source>
         <source>The supplied proxy address is invalid.</source>
         <translation>Tarjottu proxy osoite on virheellinen.</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -1374,10 +1367,6 @@ Please check the address and try again.</source>
     <message>
         <source>Total:</source>
         <translation>Määrä:</translation>
-    </message>
-    <message>
-        <source>Your current total balance</source>
-        <translation>Sinun nykyinen kokonaissaldo</translation>
     </message>
     <message>
         <source>Spendable:</source>
@@ -1443,6 +1432,10 @@ Please check the address and try again.</source>
     <message>
         <source>Priority:</source>
         <translation>Tärkeys:</translation>
+    </message>
+    <message>
+        <source>TextLabel</source>
+        <translation>TekstiNimike</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -1542,8 +1535,8 @@ Please check the address and try again.</source>
         <translation>Lohko ketju</translation>
     </message>
     <message>
-        <source>Open the Eblockmail debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Avaa Eblockmail debug loki nykyisestä sijainnista. Tämä voi kestää muutaman sekunnin suurille lokeille</translation>
+        <source>Open the EBlockmail debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Avaa EBlockmail debug loki nykyisestä sijainnista. Tämä voi kestää muutaman sekunnin suurille lokeille</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -1654,8 +1647,8 @@ Please check the address and try again.</source>
         <translation>Ulos:</translation>
     </message>
     <message>
-        <source>Welcome to the Eblockmail RPC console.</source>
-        <translation>Tervetuloa Eblockmail RPC konsoliin.</translation>
+        <source>Welcome to the EBlockmail RPC console.</source>
+        <translation>Tervetuloa EBlockmail RPC konsoliin.</translation>
     </message>
     <message>
         <source>never</source>
@@ -1672,10 +1665,6 @@ Please check the address and try again.</source>
     <message>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
-    </message>
-    <message>
-        <source>Fetching...</source>
-        <translation>Haetaan...</translation>
     </message>
 </context>
 <context>
@@ -1697,12 +1686,12 @@ Please check the address and try again.</source>
         <translation>Vaihtoehtoinen nimike uudelle vastaanottavalle osoitteelle</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Eblockmail network.</source>
-        <translation>Vaihtoehtoinen viesti joka liitetään maksupyyntöön, joka näytetään kun pyyntö avataan. Huomio: Viestiä ei lähetetä maksun mukana Eblockmail verkolle.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the EBlockmail network.</source>
+        <translation>Vaihtoehtoinen viesti joka liitetään maksupyyntöön, joka näytetään kun pyyntö avataan. Huomio: Viestiä ei lähetetä maksun mukana EBlockmail verkolle.</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Eblockmail network.</source>
-        <translation>Vaihtoehtoinen viesti, joka liitetään maksupyyntöö, joka näytetään kun pyyntö avataan. &lt;br&gt; Huomio: Tätä viestiä ei lähetetä maksun mukana Eblockmail  verkolle.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the EBlockmail network.</source>
+        <translation>Vaihtoehtoinen viesti, joka liitetään maksupyyntöö, joka näytetään kun pyyntö avataan. &lt;br&gt; Huomio: Tätä viestiä ei lähetetä maksun mukana EBlockmail  verkolle.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -1898,8 +1887,8 @@ Please check the address and try again.</source>
         <translation>Muutos:</translation>
     </message>
     <message>
-        <source>0 CATOCOIN</source>
-        <translation>0 CATOCOIN</translation>
+        <source>0 PIV</source>
+        <translation>0 PIV</translation>
     </message>
     <message>
         <source>Choose...</source>
@@ -1958,10 +1947,6 @@ Please check the address and try again.</source>
         <translation>Lisää &amp;Vastaanottaja</translation>
     </message>
     <message>
-        <source>SwiftTX</source>
-        <translation>SwiftTX</translation>
-    </message>
-    <message>
         <source>Balance:</source>
         <translation>Saldo:</translation>
     </message>
@@ -1978,12 +1963,8 @@ Please check the address and try again.</source>
         <translation>Kopioi taksa</translation>
     </message>
     <message>
-        <source>using</source>
-        <translation>käyttää</translation>
-    </message>
-    <message>
-        <source>Warning: Invalid Eblockmail address</source>
-        <translation>Varoitus: Virheellinen Eblockmail osoite</translation>
+        <source>Warning: Invalid EBlockmail address</source>
+        <translation>Varoitus: Virheellinen EBlockmail osoite</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
@@ -2018,6 +1999,10 @@ Please check the address and try again.</source>
         <translation>Virhe: Lompakko avattiin vain kolikoiden anonymisointiin. Avaus peruutettu.</translation>
     </message>
     <message>
+        <source>Pay only the minimum fee of %1</source>
+        <translation>Maksa vain %1 minimi taksa</translation>
+    </message>
+    <message>
         <source>(no label)</source>
         <translation>(ei nimikettä)</translation>
     </message>
@@ -2029,8 +2014,8 @@ Please check the address and try again.</source>
         <translation>Tämä on normaali maksu.</translation>
     </message>
     <message>
-        <source>The Eblockmail address to send the payment to</source>
-        <translation>Eblockmail osoite johon maksu lähetetään</translation>
+        <source>The EBlockmail address to send the payment to</source>
+        <translation>EBlockmail osoite johon maksu lähetetään</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2072,8 +2057,8 @@ Please check the address and try again.</source>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Eblockmail Core is shutting down...</source>
-        <translation>Eblockmail core sammuu...</translation>
+        <source>EBlockmail Core is shutting down...</source>
+        <translation>EBlockmail core sammuu...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2091,8 +2076,8 @@ Please check the address and try again.</source>
         <translation>Voit allekirjoittaa viestejä osoitteillasi todistaaksesi, että omistat ne. Ole varovainen ettet allekirjoita mitään kummallista, sillä kalasteluyritykset saattavat yrittää huijata sinut luovuttamaan tietoja. Allekirjoita vain täysin yksityiskohtaisia sanomia, jotka hyväksyt.</translation>
     </message>
     <message>
-        <source>The Eblockmail address to sign the message with</source>
-        <translation>Eblockmail osoite, jolla viesti allekirjoitetaan</translation>
+        <source>The EBlockmail address to sign the message with</source>
+        <translation>EBlockmail osoite, jolla viesti allekirjoitetaan</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2123,16 +2108,16 @@ Please check the address and try again.</source>
         <translation>Kopioi nykyinen allekirjoitus järjestelmän leikepöydälle</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Eblockmail address</source>
-        <translation>Allekirjoita viesti todistaaksesi, että omistat tämän Eblockmail osoitteen</translation>
+        <source>Sign the message to prove you own this EBlockmail address</source>
+        <translation>Allekirjoita viesti todistaaksesi, että omistat tämän EBlockmail osoitteen</translation>
     </message>
     <message>
-        <source>The Eblockmail address the message was signed with</source>
-        <translation>Eblockmail osoite, jolla viesti allekirjoitettiin</translation>
+        <source>The EBlockmail address the message was signed with</source>
+        <translation>EBlockmail osoite, jolla viesti allekirjoitettiin</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Eblockmail address</source>
-        <translation>Vahvista että viesti on allekirjoitettu kyseessä olevalla Eblockmail osoitteella.</translation>
+        <source>Verify the message to ensure it was signed with the specified EBlockmail address</source>
+        <translation>Vahvista että viesti on allekirjoitettu kyseessä olevalla EBlockmail osoitteella.</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2214,8 +2199,8 @@ Please check the address and try again.</source>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>Eblockmail Ydin</translation>
+        <source>EBlockmail Core</source>
+        <translation>EBlockmail Ydin</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -2230,8 +2215,8 @@ Please check the address and try again.</source>
         <translation>Dash Core kehittäjät</translation>
     </message>
     <message>
-        <source>The Eblockmail Core developers</source>
-        <translation>Eblockmail core kehittäjät</translation>
+        <source>The EBlockmail Core developers</source>
+        <translation>EBlockmail core kehittäjät</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2336,10 +2321,6 @@ Please check the address and try again.</source>
     <message>
         <source>Payment to yourself</source>
         <translation>Maksut itsellesi</translation>
-    </message>
-    <message>
-        <source>Minted</source>
-        <translation>Luotu</translation>
     </message>
     <message>
         <source>Mined</source>
@@ -2480,6 +2461,10 @@ Please check the address and try again.</source>
         <source>Exporting Successful</source>
         <translation>Vienti onnistui</translation>
     </message>
+    <message>
+        <source>The transaction history was successfully saved to %1.</source>
+        <translation>Rahansiirto historia onnistuneesti tallennettu %1</translation>
+    </message>
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
@@ -2524,17 +2509,9 @@ Please check the address and try again.</source>
         <source>Wallet Data (*.dat)</source>
         <translation>Lompakko Data (*.dat)</translation>
     </message>
-    <message>
-        <source>Backup Failed</source>
-        <translation>Varmuuskopiointi epäonnistui</translation>
-    </message>
-    <message>
-        <source>Backup Successful</source>
-        <translation>Varmuuskopiointi onnistui</translation>
-    </message>
-    </context>
+</context>
 <context>
-    <name>ZPhrControlDialog</name>
+    <name>ZPivControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>
@@ -2591,8 +2568,8 @@ Please check the address and try again.</source>
         <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko korruptoitunut</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Eblockmail Core</source>
-        <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version Eblockmail Coresta</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of EBlockmail Core</source>
+        <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version EBlockmail Coresta</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>

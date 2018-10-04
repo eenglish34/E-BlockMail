@@ -108,10 +108,6 @@
         <translation>Powtórz nowe hasło</translation>
     </message>
     <message>
-        <source>For anonymization and staking only</source>
-        <translation>Tylko dla anonimizacji i stakingu</translation>
-    </message>
-    <message>
         <source>Encrypt wallet</source>
         <translation>Zakoduj portfel</translation>
     </message>
@@ -148,8 +144,8 @@
         <translation>Czy na pewno chcesz zakodować portfel?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR CATOCOIN&lt;/b&gt;!</source>
-        <translation>Ostrzeżenie: Jeżeli zakodujesz portfel i stracisz do niego hasło , UTRACISZ WSZYSTKIE CATOCOIN!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
+        <translation>Ostrzeżenie: Jeżeli zakodujesz portfel i stracisz do niego hasło , UTRACISZ WSZYSTKIE PIV!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -189,6 +185,9 @@
     </message>
 </context>
 <context>
+    <name>BanTableModel</name>
+    </context>
+<context>
     <name>Bip38ToolDialog</name>
     <message>
         <source>BIP 38 Tool</source>
@@ -227,10 +226,6 @@
         <translation>Zakodowany klucz:</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Eblockmail address</source>
-        <translation>Zatwierdź wiadomość, aby udowodnić, że podany adres Eblockmail jest w twoim posiadaniu</translation>
-    </message>
-    <message>
         <source>Encrypt &amp;Key</source>
         <translation>Kodowanie &amp;klucz</translation>
     </message>
@@ -241,10 +236,6 @@
     <message>
         <source>&amp;BIP 38 Decrypt</source>
         <translation>&amp;BIP 38 Zakoduj</translation>
-    </message>
-    <message>
-        <source>Reset all verify message fields</source>
-        <translation>Resetuj wszystkie zweryfikowane pola tekstowe</translation>
     </message>
     <message>
         <source>Decrypted Key:</source>
@@ -518,12 +509,12 @@
         <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>&amp;Rdzeń Eblockmail</translation>
+        <source>EBlockmail Core</source>
+        <translation>&amp;Rdzeń EBlockmail</translation>
     </message>
     <message>
-        <source>Send coins to a Eblockmail address</source>
-        <translation>Wyślij monety do adresu Eblockmail</translation>
+        <source>Send coins to a EBlockmail address</source>
+        <translation>Wyślij monety do adresu EBlockmail</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and eblockmail: URIs)</source>
@@ -538,24 +529,24 @@
         <translation>Przeglądaj masternodes</translation>
     </message>
     <message>
-        <source>&amp;About Eblockmail Core</source>
+        <source>&amp;About EBlockmail Core</source>
         <translation>&amp;O rdzeniu bitcoina</translation>
     </message>
     <message>
-        <source>Show information about Eblockmail Core</source>
+        <source>Show information about EBlockmail Core</source>
         <translation>Pokaż informacje o rdzeniu bitcoina</translation>
     </message>
     <message>
-        <source>Modify configuration options for Eblockmail</source>
-        <translation>Modyfikuj opcje konfiguracji Eblockmail</translation>
+        <source>Modify configuration options for EBlockmail</source>
+        <translation>Modyfikuj opcje konfiguracji EBlockmail</translation>
     </message>
     <message>
-        <source>Sign messages with your Eblockmail addresses to prove you own them</source>
-        <translation>Zatwierdź wiadomość z twoimi adresami Eblockmail, by udowodnić, że jesteś w ich posiadaniu</translation>
+        <source>Sign messages with your EBlockmail addresses to prove you own them</source>
+        <translation>Zatwierdź wiadomość z twoimi adresami EBlockmail, by udowodnić, że jesteś w ich posiadaniu</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Eblockmail addresses</source>
-        <translation>Zweryfikuj wiadomości by upewnić się, że zostały zatwierdzone z podanego adresu Eblockmail</translation>
+        <source>Verify messages to ensure they were signed with specified EBlockmail addresses</source>
+        <translation>Zweryfikuj wiadomości by upewnić się, że zostały zatwierdzone z podanego adresu EBlockmail</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -582,8 +573,8 @@
         <translation>Otwórz &amp;Plik konfiguracji Masternode</translation>
     </message>
     <message>
-        <source>Open a Eblockmail: URI or payment request</source>
-        <translation>OtwórzCATOCOINX: URI i żądanie zapłaty</translation>
+        <source>Open a EBlockmail: URI or payment request</source>
+        <translation>Otwórz EBlockmail: URI i żądanie zapłaty</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -594,12 +585,12 @@
         <translation>Okno eksplorera bloków</translation>
     </message>
     <message>
-        <source>Show the Eblockmail Core help message to get a list with possible Eblockmail command-line options</source>
-        <translation>Pokaż wiadomość pomocy rdzenia Eblockmail, aby dostać listę możliwych opcji Eblockmail command-line</translation>
+        <source>Show the EBlockmail Core help message to get a list with possible EBlockmail command-line options</source>
+        <translation>Pokaż wiadomość pomocy rdzenia EBlockmail, aby dostać listę możliwych opcji EBlockmail command-line</translation>
     </message>
     <message>
-        <source>Eblockmail Core client</source>
-        <translation>Rdzeń Eblockmail klient</translation>
+        <source>EBlockmail Core client</source>
+        <translation>Rdzeń EBlockmail klient</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -688,10 +679,6 @@ MultiWysyłlka: %1</translation>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>Portfel jest 1Zakodowany1 i obecnie 2Odblokowany2</translation>
-    </message>
-    <message>
-        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt; for anonimization and staking only</source>
-        <translation>Portfel jest 1Zakodowany1 i obecnie 2Odblokowany2 tylko dla anonimizacji i stakingu</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
@@ -912,8 +899,8 @@ MultiWysyłlka: %1</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>&amp;Rdzeń Eblockmail</translation>
+        <source>EBlockmail Core</source>
+        <translation>&amp;Rdzeń EBlockmail</translation>
     </message>
     </context>
 <context>
@@ -927,8 +914,8 @@ MultiWysyłlka: %1</translation>
         <translation>Użyj niestandardowej ścieżki danych</translation>
     </message>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>&amp;Rdzeń Eblockmail</translation>
+        <source>EBlockmail Core</source>
+        <translation>&amp;Rdzeń EBlockmail</translation>
     </message>
     <message>
         <source>Error</source>
@@ -944,10 +931,6 @@ MultiWysyłlka: %1</translation>
     <message>
         <source>Form</source>
         <translation>Forma</translation>
-    </message>
-    <message>
-        <source>My Masternodes</source>
-        <translation>Moje Masternode</translation>
     </message>
     <message>
         <source>Address</source>
@@ -1101,6 +1084,10 @@ MultiWysyłlka: %1</translation>
         <translation>Podgląd MultiWysyłki</translation>
     </message>
     <message>
+        <source>(no label)</source>
+        <translation>(brak zakładki)</translation>
+    </message>
+    <message>
         <source>The entered address:
 </source>
         <translation>Wprowadzony adres:
@@ -1127,6 +1114,21 @@ Proszę sprawdzić adres i spróbować ponownie</translation>
 </translation>
     </message>
 </context>
+<context>
+    <name>MultisigDialog</name>
+    <message>
+        <source>Status:</source>
+        <translation>Status:</translation>
+    </message>
+    <message>
+        <source>0</source>
+        <translation>0</translation>
+    </message>
+    <message>
+        <source>Amount:</source>
+        <translation>Liczba:</translation>
+    </message>
+    </context>
 <context>
     <name>ObfuscationConfig</name>
     <message>
@@ -1188,12 +1190,12 @@ Proszę sprawdzić adres i spróbować ponownie</translation>
         <translation>Zezwól na przychodzące połączenia</translation>
     </message>
     <message>
-        <source>Automatically start Eblockmail after logging in to the system.</source>
-        <translation>Automatycznie uruchom Eblockmail po zalogowaniu do systemu</translation>
+        <source>Automatically start EBlockmail after logging in to the system.</source>
+        <translation>Automatycznie uruchom EBlockmail po zalogowaniu do systemu</translation>
     </message>
     <message>
-        <source>&amp;Start Eblockmail on system login</source>
-        <translation>&amp;Uruchom Eblockmail podczas logowania do systemu</translation>
+        <source>&amp;Start EBlockmail on system login</source>
+        <translation>&amp;Uruchom EBlockmail podczas logowania do systemu</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1212,8 +1214,8 @@ Proszę sprawdzić adres i spróbować ponownie</translation>
         <translation>&amp;Sieć</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Eblockmail.</source>
-        <translation>Język interfejsu użytkownika może być wybrany tutaj. Ustawienia ulegną zmianie po restarcie Eblockmail</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting EBlockmail.</source>
+        <translation>Język interfejsu użytkownika może być wybrany tutaj. Ustawienia ulegną zmianie po restarcie EBlockmail</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1222,8 +1224,8 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations</so
 https://www.transifex.com/eblockmail-project/eblockmail-project-translations </translation>
     </message>
     <message>
-        <source>Connect to the Eblockmail network through a SOCKS5 proxy.</source>
-        <translation>Połącz z siecią Eblockmail poprzez SOCKS5 proxy.</translation>
+        <source>Connect to the EBlockmail network through a SOCKS5 proxy.</source>
+        <translation>Połącz z siecią EBlockmail poprzez SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1313,7 +1315,7 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations </t
         <source>The supplied proxy address is invalid.</source>
         <translation>Podany adres proxy jest nieprawidłowy</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -1341,10 +1343,6 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations </t
         <translation>Całość:</translation>
     </message>
     <message>
-        <source>Your current total balance</source>
-        <translation>Twój całkowity bilans</translation>
-    </message>
-    <message>
         <source>Current total balance in watch-only addresses</source>
         <translation>Obecny całkowity bilans w adresach tylko do obejrzenia</translation>
     </message>
@@ -1364,7 +1362,7 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations </t
         <source>out of sync</source>
         <translation>Brak synchronizacji</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -1426,6 +1424,10 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations </t
         <translation>Priorytet:</translation>
     </message>
     <message>
+        <source>TextLabel</source>
+        <translation>TekstZakładka</translation>
+    </message>
+    <message>
         <source>Fee:</source>
         <translation>Opłata:</translation>
     </message>
@@ -1461,8 +1463,8 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations </t
         <translation>Liczba</translation>
     </message>
     <message>
-        <source>Enter a Eblockmail address (e.g. %1)</source>
-        <translation>Wprowadź adres Eblockmail (np. %1)</translation>
+        <source>Enter a EBlockmail address (e.g. %1)</source>
+        <translation>Wprowadź adres EBlockmail (np. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1647,14 +1649,6 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations </t
         <translation>Usługi</translation>
     </message>
     <message>
-        <source>Starting Height</source>
-        <translation>Wysokość rozpoczęcia</translation>
-    </message>
-    <message>
-        <source>Sync Height</source>
-        <translation>Wysokość synchronizacji</translation>
-    </message>
-    <message>
         <source>Connection Time</source>
         <translation>Czas połączenia</translation>
     </message>
@@ -1742,7 +1736,7 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations </t
         <source>Unknown</source>
         <translation>Nieznane</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -1900,8 +1894,8 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations </t
         <translation>Alt+P</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Eblockmail address</source>
-        <translation>Zatwierdź wiadomość, aby udowodnić, że podany adres Eblockmail jest w twoim posiadaniu</translation>
+        <source>Sign the message to prove you own this EBlockmail address</source>
+        <translation>Zatwierdź wiadomość, aby udowodnić, że podany adres EBlockmail jest w twoim posiadaniu</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -1935,8 +1929,8 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations </t
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Eblockmail Core</source>
-        <translation>&amp;Rdzeń Eblockmail</translation>
+        <source>EBlockmail Core</source>
+        <translation>&amp;Rdzeń EBlockmail</translation>
     </message>
     </context>
 <context>
@@ -2027,7 +2021,7 @@ https://www.transifex.com/eblockmail-project/eblockmail-project-translations </t
     </message>
     </context>
 <context>
-    <name>ZPhrControlDialog</name>
+    <name>ZPivControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>

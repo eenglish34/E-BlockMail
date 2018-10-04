@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The EBlockmail developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -28,13 +28,13 @@
 #include <QVBoxLayout>
 
 /** "Help message" or "About" dialog box */
-HelpMessageDialog::HelpMessageDialog(QWidget* parent, bool about) : QDialog(parent),
+HelpMessageDialog::HelpMessageDialog(QWidget* parent, bool about) : QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint),
                                                                     ui(new Ui::HelpMessageDialog)
 {
     ui->setupUi(this);
     GUIUtil::restoreWindowGeometry("nHelpMessageDialogWindow", this->size(), this);
 
-    QString version = tr("Eblockmail Core") + " " + tr("version") + " " + QString::fromStdString(FormatFullVersion());
+    QString version = tr("EBlockmail Core") + " " + tr("version") + " " + QString::fromStdString(FormatFullVersion());
 /* On x86 add a bit specifier to the version so that users can distinguish between
      * 32 and 64 bit builds. On other architectures, 32/64 bit may be more ambigious.
      */
@@ -45,7 +45,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget* parent, bool about) : QDialog(pare
 #endif
 
     if (about) {
-        setWindowTitle(tr("About Eblockmail Core"));
+        setWindowTitle(tr("About EBlockmail Core"));
 
         /// HTML-format the license message from the core
         QString licenseInfo = QString::fromStdString(LicenseInfo());
@@ -65,113 +65,10 @@ HelpMessageDialog::HelpMessageDialog(QWidget* parent, bool about) : QDialog(pare
         ui->aboutMessage->setWordWrap(true);
         ui->helpMessage->setVisible(false);
     } else {
-        setWindowTitle("ROI and Stats Information");
+        setWindowTitle(tr("Command-line options"));
         QString header = tr("Usage:") + "\n" +
                          "  eblockmail-qt [" + tr("command-line options") + "]                     " + "\n";
         QTextCursor cursor(ui->helpMessage->document());
-	cursor.insertBlock();
-/*	cursor.insertText("Node	Collateral");
-cursor.insertBlock();
-cursor.insertText("1	2,000");
-cursor.insertBlock();
-cursor.insertText("31	2,400");
-cursor.insertBlock();
-cursor.insertText("61	2,550");cursor.insertBlock();
-cursor.insertText("91	2,750");cursor.insertBlock();
-cursor.insertText("121	2,950");cursor.insertBlock();
-cursor.insertText("151	3,150");cursor.insertBlock();
-cursor.insertText("181	3,350");cursor.insertBlock();
-cursor.insertText("211	3,600");cursor.insertBlock();
-cursor.insertText("241	3,850");cursor.insertBlock();
-cursor.insertText("271	4,150");cursor.insertBlock();
-cursor.insertText("301	4,400");cursor.insertBlock();
-cursor.insertText("331	4,750");cursor.insertBlock();
-cursor.insertText("361	5,050");cursor.insertBlock();
-cursor.insertText("391	5,400");cursor.insertBlock();
-cursor.insertText("421	5,800");cursor.insertBlock();
-cursor.insertText("451	6,200");cursor.insertBlock();
-cursor.insertText("481	6,600");cursor.insertBlock();
-cursor.insertText("511	7,100");cursor.insertBlock();
-*/
-cursor.insertText("Node	Collateral	Reward");cursor.insertBlock();
-/*cursor.insertText("1	2,000	5.20");cursor.insertBlock();
-cursor.insertText("31	2,400	5.64");cursor.insertBlock();
-cursor.insertText("61	2,550	7.36");cursor.insertBlock();
-cursor.insertText("91	2,750	8.05");cursor.insertBlock();
-cursor.insertText("121	2,950	8.45");cursor.insertBlock();
-cursor.insertText("151	3,150	8.88");cursor.insertBlock();
-cursor.insertText("181	3,350	9.32");cursor.insertBlock();
-cursor.insertText("211	3,600	9.78");cursor.insertBlock();
-cursor.insertText("241	3,850	10.27");cursor.insertBlock();
-cursor.insertText("271	4,150	10.79");cursor.insertBlock();
-cursor.insertText("301	4,400	11.33");cursor.insertBlock();
-cursor.insertText("331	4,750	11.89");cursor.insertBlock();
-cursor.insertText("361	5,050	12.49");cursor.insertBlock();
-cursor.insertText("391	5,400	13.11");cursor.insertBlock();
-cursor.insertText("421	5,800	13.77");cursor.insertBlock();
-cursor.insertText("451	6,200	14.46");cursor.insertBlock();
-cursor.insertText("481	6,600	15.18");cursor.insertBlock();
-cursor.insertText("511	7,100	15.94");cursor.insertBlock();
-cursor.insertText("Masternodes do not earn rewards until 6 hours after start.");cursor.insertBlock();
-cursor.insertText("240 confirmation required.");cursor.insertBlock();
-cursor.insertText("Coins require 360 confirmations before staking can begin.");cursor.insertBlock();
-cursor.insertText("locked coins do not stake.");cursor.insertBlock();*/
-cursor.insertText("1	2,000	5.20");cursor.insertBlock();
-//cursor.insertText("3	2,000	1.76");cursor.insertBlock();
-//cursor.insertText("5	2,000	2.80");cursor.insertBlock();
-//cursor.insertText("10	2,000	3.10");cursor.insertBlock();
-cursor.insertText("16	2,200	5.20");cursor.insertBlock();
-//cursor.insertText("20	2,000	3.64");cursor.insertBlock();
-//cursor.insertText("25	2,000	4.30");cursor.insertBlock();
-cursor.insertText("31	2,400	5.20");cursor.insertBlock();
-cursor.insertText("61	2,550	5.64");cursor.insertBlock();
-cursor.insertText("91	2,750	7.36");cursor.insertBlock();
-cursor.insertText("121	2,950	8.05");cursor.insertBlock();
-cursor.insertText("151	3,150	8.45");cursor.insertBlock();
-cursor.insertText("181	3,350	8.88");cursor.insertBlock();
-cursor.insertText("211	3,600	9.32");cursor.insertBlock();
-cursor.insertText("241	3,850	9.78");cursor.insertBlock();
-cursor.insertText("271	4,150	10.27");cursor.insertBlock();
-cursor.insertText("301	4,400	10.79");cursor.insertBlock();
-cursor.insertText("331	4,750	11.33");cursor.insertBlock();
-cursor.insertText("361	5,050	11.89");cursor.insertBlock();
-cursor.insertText("391	5,400	12.49");cursor.insertBlock();
-cursor.insertText("421	5,800	13.11");cursor.insertBlock();
-cursor.insertText("451	6,200	13.77");cursor.insertBlock();
-cursor.insertText("481	6,600	14.46");cursor.insertBlock();
-cursor.insertText("511	7,100	15.18");cursor.insertBlock();
-cursor.insertText("--------------------------");cursor.insertBlock();
-cursor.insertText("70% Masternode / 30% POS");cursor.insertBlock();
-cursor.insertText("Locked coins do not stake");cursor.insertBlock();
-cursor.insertText("15 confirmations required");cursor.insertBlock();
-cursor.insertText("Coins need to mature for 2 hours before staking");cursor.insertBlock();
-cursor.insertText("Masternodes do not earn rewards until 2 hours after start");cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-        cursor.insertBlock();
-
-        //QTextImageFormat imageFormat;
-        //imageFormat.setName(":/icons/add.png");
-        //cursor.insertImage(imageFormat);
-	//QImage pictureImage("splash.png");
-	//QString pictureUrl = QString(":/images/splash.png");
-	//ui->helpMessage->document()->addResource(QTextDocument::ImageResource, QUrl(pictureUrl), QVariant(pictureImage));
-
-// insert the picture in the document
-	//cursor.insertBlock();
-	//QTextImageFormat pictureFormat;
-	///pictureFormat.setName(pictureUrl);
-	//pictureFormat.setWidth(pictureImage.width()); // 150 pixelfor picture.png
-	//cursor.insertImage(pictureFormat);
         cursor.insertText(version);
         cursor.insertBlock();
         cursor.insertText(header);
@@ -257,7 +154,7 @@ ShutdownWindow::ShutdownWindow(QWidget* parent, Qt::WindowFlags f) : QWidget(par
 {
     QVBoxLayout* layout = new QVBoxLayout();
     layout->addWidget(new QLabel(
-        tr("Eblockmail Core is shutting down...") + "<br /><br />" +
+        tr("EBlockmail Core is shutting down...") + "<br /><br />" +
         tr("Do not shut down the computer until this window disappears.")));
     setLayout(layout);
 }

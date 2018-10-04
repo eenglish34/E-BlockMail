@@ -19,14 +19,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Eblockmail"
-            VALUE "FileDescription",    "Eblockmail Core - GUI"
+            VALUE "CompanyName",        "EBlockmail"
+            VALUE "FileDescription",    "EBlockmail Core (OSS GUI client for EBlockmail)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "eblockmail-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename",   "eblockmail-qt.exe"
-            VALUE "ProductName",        "Eblockmail Core"
+            VALUE "ProductName",        "EBlockmail Core"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

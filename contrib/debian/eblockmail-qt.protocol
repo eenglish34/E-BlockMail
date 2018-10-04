@@ -1,0 +1,11 @@
+[Protocol]
+exec=eblockmail-qt '%u'
+protocol=eblockmail
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false
